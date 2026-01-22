@@ -1,32 +1,32 @@
 /* ===============================
-   Bisaya Fire Nation Blog - style.css
-   Android Friendly + Glassmorphism + Theme Toggle
-================================= */
+   style.css (ONE FILE)
+   Bisaya Fire Nation Blog
+   - Light/Dark via html[data-theme]
+   - Android-friendly
+   - Header + nav + theme toggle
+   - Image cards + zoom modal
+   - Profile modal
+================================ */
 
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ✅ Android / mobile fixes */
+/* Android / mobile fixes */
 html,body{
   height:100%;
   width:100%;
   -webkit-text-size-adjust:100%;
   text-size-adjust:100%;
-  overscroll-behavior-y: none;
+  overscroll-behavior-y:none;
 }
 *{-webkit-tap-highlight-color: transparent;}
 a,button{touch-action: manipulation;}
 
-/* Prevent horizontal scroll on Android */
-body{
-  font-family:Arial, sans-serif;
-  overflow-x:hidden;
-  position:relative;
-  min-height:100vh;
-}
-
-/* ===== THEME VARIABLES ===== */
+/* ===============================
+   THEME VARIABLES
+================================ */
 :root{
-  --bg: #f7f7fb;
+  --bg:#f7f7fb;
   --bg2:#ffffff;
   --text:#111;
   --muted: rgba(0,0,0,.65);
@@ -37,17 +37,16 @@ body{
 
   --accent:#ff4500;
   --accent2:#ffb000;
+  --highlight:#b8860b;
 
-  /* fire glow */
   --glowA: rgba(255,69,0,.55);
   --glowB: rgba(255,176,0,.35);
 
-  /* transition */
   --t: 420ms;
 }
 
 html[data-theme="dark"]{
-  --bg: #07080c;
+  --bg:#07080c;
   --bg2:#0b0f18;
   --text:#f5f6ff;
   --muted: rgba(255,255,255,.72);
@@ -58,13 +57,15 @@ html[data-theme="dark"]{
 
   --accent:#ff5a1f;
   --accent2:#ffcc33;
+  --highlight:#ffd700;
 
   --glowA: rgba(255,90,31,.62);
   --glowB: rgba(255,204,51,.28);
 }
 
-/* ===== Smooth theme transition ===== */
-html, body, header, .post, .sidebar, .modal-box, #themeToggle{
+/* Smooth transitions */
+html, body, header, .post, .sidebar, .modal-box, #themeToggle, .nav a,
+.image-card, .image-modal img{
   transition:
     background-color var(--t) ease,
     color var(--t) ease,
@@ -72,12 +73,20 @@ html, body, header, .post, .sidebar, .modal-box, #themeToggle{
     box-shadow var(--t) ease,
     backdrop-filter var(--t) ease,
     filter var(--t) ease,
-    transform var(--t) ease;
+    transform var(--t) ease,
+    opacity var(--t) ease;
 }
 
-/* ===== Background (light vs dark) ===== */
+/* ===============================
+   BODY BACKGROUND
+================================ */
 body{
+  font-family: Arial, sans-serif;
+  overflow-x:hidden;
+  position:relative;
+  min-height:100vh;
   color: var(--text);
+
   background:
     radial-gradient(1000px 500px at 20% 0%, rgba(255,69,0,.10), transparent 55%),
     radial-gradient(900px 500px at 85% 15%, rgba(255,176,0,.10), transparent 55%),
@@ -91,83 +100,32 @@ html[data-theme="dark"] body{
     linear-gradient(180deg, #05060a 0%, #070a12 45%, #0a0f18 100%);
 }
 
-/* ================= INTRO OVERLAY ================= */
-#intro{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  flex-direction:column;
-  opacity:1;
-  transition: opacity 1s ease-in-out;
-}
-#intro.hidden{opacity:0}
-#introText{
-  font-size:28px;
-  letter-spacing:.5px;
-  text-align:center;
-  padding:0 18px;
-  color:#fff;
-  text-shadow: 0 0 18px rgba(255,69,0,.55);
-}
-
-/* ================= FIRE BACKGROUND ================= */
-#fire-bg{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  z-index:-1;
-  pointer-events:none;
-
-  /* fire glow adapting to theme */
-  filter:
-    drop-shadow(0 0 18px var(--glowA))
-    drop-shadow(0 0 40px var(--glowB));
-  transition: filter var(--t) ease;
-}
-
-.flame{
-  position:absolute;
-  bottom:-80px;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background: radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(255,176,0,.95) 35%, rgba(255,69,0,.9) 70%, rgba(255,69,0,0) 100%);
-  opacity:.9;
-  animation: rise 3s linear forwards;
-  filter: blur(.2px);
-}
-
-@keyframes rise{
-  0%{transform:translateY(0) scale(.7); opacity:0}
-  10%{opacity:.9}
-  100%{transform:translateY(-110vh) scale(1.6); opacity:0}
-}
-
-/* ================= HEADER ================= */
+/* ===============================
+   HEADER
+================================ */
 header{
   position:sticky;
   top:0;
   z-index:50;
   padding:14px 0;
+
   background: rgba(0,0,0,.18);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
 
-/* ✅ Fallback if backdrop-filter unsupported (some Android WebView) */
-@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
-  header{background: rgba(0,0,0,.35);}
-  html[data-theme="light"] header{background: rgba(255,255,255,.75);}
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,.18);
 }
 
 html[data-theme="light"] header{
   background: rgba(255,255,255,.42);
   border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+/* Fallback if backdrop-filter unsupported */
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
+  header{background: rgba(0,0,0,.35);}
+  html[data-theme="light"] header{background: rgba(255,255,255,.75);}
 }
 
 .header-inner{
@@ -179,7 +137,7 @@ html[data-theme="light"] header{
   gap:14px;
 }
 
-/* ✅ Better mobile header wrapping */
+/* mobile header wrap */
 @media (max-width: 720px){
   .header-inner{
     flex-wrap:wrap;
@@ -187,19 +145,23 @@ html[data-theme="light"] header{
   }
 }
 
+.logo{
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+}
 .logo img{
   height:42px;
   margin-right:10px;
   object-fit:contain;
-  cursor:pointer;
   filter: drop-shadow(0 0 12px rgba(255,69,0,.25));
-  transition: filter var(--t) ease, transform var(--t) ease;
 }
 .logo img:hover{
   transform: translateY(-1px);
   filter: drop-shadow(0 0 16px var(--glowA));
 }
 
+/* NAV */
 .nav{
   display:flex;
   gap:16px;
@@ -210,22 +172,37 @@ html[data-theme="light"] header{
   text-decoration:none;
   color: var(--text);
   opacity:.88;
-  font-weight:600;
-  padding:10px 12px; /* ✅ bigger tap target */
+  font-weight:700;
+  padding:10px 12px;
   border-radius:12px;
-  transition: background-color var(--t) ease, opacity var(--t) ease, transform var(--t) ease;
+
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
 }
+
+html[data-theme="light"] .nav a{
+  background: rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.06);
+}
+
 .nav a:hover{
   opacity:1;
   background: rgba(255,69,0,.12);
   transform: translateY(-1px);
+  border-color: rgba(255,69,0,.18);
 }
 
-/* ================= THEME TOGGLE ================= */
+.nav a.active{
+  background: rgba(255,69,0,.14);
+  border: 1px solid rgba(255,69,0,.20);
+  color: var(--highlight);
+  opacity:1;
+}
+
+/* THEME TOGGLE */
 #themeToggle{
-  border:none;
   cursor:pointer;
-  width:44px;        /* ✅ 44px tap target (mobile standard) */
+  width:44px;
   height:44px;
   border-radius:14px;
   font-size:18px;
@@ -233,6 +210,7 @@ html[data-theme="light"] header{
 
   background: var(--glass);
   border: 1px solid var(--glass-border);
+
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 10px 40px rgba(0,0,0,.18);
@@ -246,7 +224,111 @@ html[data-theme="light"] header{
   filter: brightness(.96);
 }
 
-/* ================= MAIN LAYOUT ================= */
+/* ===============================
+   BLOG IMAGE GRID
+================================ */
+.card-wrapper{
+  width:min(1100px, 92%);
+  margin:0 auto;
+  padding:28px 0 40px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  justify-content:center;
+  align-items:center;
+}
+
+/* IMAGE CARD */
+.image-card{
+  width:140px;
+  height:260px;
+  border-radius:18px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.22),
+    0 0 18px rgba(255,69,0,.20);
+}
+
+@supports not ((backdrop-filter: blur(14px)) or (-webkit-backdrop-filter: blur(14px))){
+  .image-card{ background: rgba(20,20,20,.55); }
+  html[data-theme="light"] .image-card{ background: rgba(255,255,255,.88); }
+}
+
+.image-card:hover{
+  transform:translateY(-8px);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.30),
+    0 0 28px var(--glowA),
+    0 0 55px var(--glowB);
+}
+
+.image-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform: scale(1.02);
+  transition: transform var(--t) ease, filter var(--t) ease;
+}
+.image-card:hover img{
+  transform: scale(1.06);
+  filter: saturate(1.05) contrast(1.03);
+}
+
+/* IMAGE ZOOM MODAL */
+.image-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.82);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.image-modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:16px;
+  box-shadow:
+    0 0 26px var(--glowA),
+    0 0 70px var(--glowB);
+  animation:zoomIn .25s ease;
+}
+
+@keyframes zoomIn{
+  from{transform:scale(0.7);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+.close-modal{
+  position:absolute;
+  top:18px;
+  right:20px;
+  font-size:32px;
+  color:white;
+  cursor:pointer;
+  user-select:none;
+  text-shadow: 0 0 18px var(--glowA);
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
 .container{
   width:min(1100px, 92%);
   margin:22px auto 60px;
@@ -254,13 +336,12 @@ html[data-theme="light"] header{
   grid-template-columns: 1fr 280px;
   gap:18px;
 }
-
 @media (max-width: 900px){
   .container{grid-template-columns: 1fr}
   .sidebar{order:-1}
 }
 
-/* ================= GLASS CARDS ================= */
+/* GLASS CARDS */
 .post, .sidebar, .modal-box{
   background: var(--glass);
   border: 1px solid var(--glass-border);
@@ -268,40 +349,32 @@ html[data-theme="light"] header{
   -webkit-backdrop-filter: blur(14px);
   border-radius: 18px;
   box-shadow: var(--shadow);
-
   position:relative;
   overflow:hidden;
 }
 
-/* ✅ Fallback if backdrop-filter unsupported */
+/* Fallback if blur unsupported */
 @supports not ((backdrop-filter: blur(14px)) or (-webkit-backdrop-filter: blur(14px))){
-  .post, .sidebar, .modal-box{
-    background: rgba(20,20,20,.55);
-  }
+  .post, .sidebar, .modal-box{ background: rgba(20,20,20,.55); }
   html[data-theme="light"] .post,
   html[data-theme="light"] .sidebar,
-  html[data-theme="light"] .modal-box{
-    background: rgba(255,255,255,.85);
-  }
+  html[data-theme="light"] .modal-box{ background: rgba(255,255,255,.85); }
 }
 
-/* subtle fire edge glow */
+/* subtle glow edge */
 .post::before, .sidebar::before, .modal-box::before{
   content:"";
   position:absolute;
   inset:-1px;
-  border-radius: 18px;
+  border-radius:18px;
   pointer-events:none;
-  background: radial-gradient(500px 140px at 10% 0%,
-    rgba(255,69,0,.18), transparent 60%);
+  background: radial-gradient(500px 140px at 10% 0%, rgba(255,69,0,.18), transparent 60%);
   opacity:.9;
-  transition: opacity var(--t) ease;
 }
 html[data-theme="dark"] .post::before,
 html[data-theme="dark"] .sidebar::before,
 html[data-theme="dark"] .modal-box::before{
-  background: radial-gradient(520px 160px at 12% 0%,
-    rgba(255,90,31,.22), transparent 62%);
+  background: radial-gradient(520px 160px at 12% 0%, rgba(255,90,31,.22), transparent 62%);
 }
 
 .post{
@@ -318,8 +391,6 @@ html[data-theme="dark"] .modal-box::before{
   color: var(--muted);
   margin-bottom:10px;
 }
-
-/* ✅ color-mix fallback for some Android browsers */
 .post p{
   line-height:1.6;
   color: rgba(17,17,17,.88);
@@ -327,22 +398,18 @@ html[data-theme="dark"] .modal-box::before{
 html[data-theme="dark"] .post p{
   color: rgba(245,246,255,.88);
 }
-@supports (color: color-mix(in srgb, white 50%, black)){
-  .post p{ color: color-mix(in srgb, var(--text) 88%, transparent); }
-}
 
-/* poster badges */
+/* poster badge */
 .poster{
   font-weight:800;
   cursor:pointer;
-  padding:4px 10px;          /* ✅ bigger tap target */
+  padding:4px 10px;
   border-radius:999px;
   display:inline-flex;
   align-items:center;
   gap:6px;
   border:1px solid rgba(255,255,255,.14);
   background: rgba(255,69,0,.12);
-  transition: transform var(--t) ease, background-color var(--t) ease;
 }
 html[data-theme="light"] .poster{
   border:1px solid rgba(0,0,0,.10);
@@ -350,22 +417,15 @@ html[data-theme="light"] .poster{
 .poster:hover{transform: translateY(-1px)}
 .poster:active{transform: translateY(0px)}
 .poster.admin{ background: rgba(255,69,0,.16) }
-.poster.dev{ background: rgba(255,176,0,.14) }
 
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 .sidebar{
   padding:16px;
   height:fit-content;
 }
-
-/* ✅ Sticky can be buggy on some Android browsers; make it normal on small screens */
 @media (min-width: 901px){
-  .sidebar{
-    position:sticky;
-    top:86px;
-  }
+  .sidebar{ position:sticky; top:86px; }
 }
-
 .sidebar h3{
   margin-bottom:10px;
   letter-spacing:.2px;
@@ -374,12 +434,11 @@ html[data-theme="light"] .poster{
   display:block;
   text-decoration:none;
   color: var(--text);
-  padding:12px 12px;         /* ✅ tap target */
+  padding:12px 12px;
   border-radius:14px;
   margin:8px 0;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.08);
-  transition: transform var(--t) ease, background-color var(--t) ease, border-color var(--t) ease;
 }
 html[data-theme="light"] .sidebar a{
   background: rgba(0,0,0,.04);
@@ -390,11 +449,10 @@ html[data-theme="light"] .sidebar a{
   background: rgba(255,69,0,.10);
   border-color: rgba(255,69,0,.18);
 }
-.sidebar a:active{
-  transform: translateY(0px);
-}
 
-/* ================= MODAL ================= */
+/* ===============================
+   PROFILE MODAL
+================================ */
 .modal{
   position:fixed;
   inset:0;
@@ -402,11 +460,13 @@ html[data-theme="light"] .sidebar a{
   align-items:center;
   justify-content:center;
   padding:20px;
-  z-index:999;
+  z-index:9998;
+
   background: rgba(0,0,0,.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
+
 .modal-box{
   width:min(420px, 96%);
   padding:18px;
@@ -422,7 +482,7 @@ html[data-theme="light"] .sidebar a{
 .modal-box button{
   margin-top:12px;
   width:100%;
-  min-height:44px;           /* ✅ tap target */
+  min-height:44px;
   padding:12px 14px;
   border:none;
   border-radius:14px;
@@ -432,7 +492,54 @@ html[data-theme="light"] .sidebar a{
   color:#fff;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   box-shadow: 0 14px 50px rgba(255,69,0,.18);
-  transition: transform var(--t) ease, filter var(--t) ease;
 }
 .modal-box button:hover{transform: translateY(-1px)}
 .modal-box button:active{transform: translateY(0px); filter: brightness(.95)}
+
+/* ===============================
+   MOBILE
+================================ */
+@media(max-width:768px){
+  .card-wrapper{
+    gap:18px;
+    padding:22px 0 32px;
+  }
+  .image-card{
+    width:120px;
+    height:220px;
+  }
+}
+
+/* ===============================
+   EXTRA POST STYLES
+================================ */
+.post-icon{
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.event-post {
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.4);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.post-icon {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 5px var(--accent));
+}
+
+.post-type {
+  font-weight: bold;
+  color: var(--accent);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

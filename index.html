@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Bisaya Fire Nation Blog</title>
+  <title>Bisaya Fire Nation</title>
 
   <meta name="theme-color" content="#ff4500" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -16,16 +16,19 @@
   <link rel="apple-touch-icon" href="images/bfn.png" />
 
   <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Small meta text style */
+    .post-meta {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 10px;
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
-
-  <!-- INTRO IS OFF -->
-  <!-- <div id="intro">
-    <h1 id="introText"></h1>
-  </div> -->
-
-  <div id="fire-bg"></div>
 
   <header>
     <div class="header-inner">
@@ -49,10 +52,12 @@
 
     <main>
 
+      <!-- ================= POST 1 ================= -->
       <article class="post">
         <h2>Welcome to BFN</h2>
-        <small>
-          Posted by
+
+        <small class="post-meta">
+          📅 January 19, 2026 · Posted by
           <span class="poster admin"
             onclick="openProfile(
               'Nemmar',
@@ -70,10 +75,12 @@
         </p>
       </article>
 
+      <!-- ================= POST 2 ================= -->
       <article class="post">
         <h2>Development Update</h2>
-        <small>
-          Posted by
+
+        <small class="post-meta">
+          📅 January 20, 2026 · Posted by
           <span class="poster dev"
             onclick="openProfile(
               'Aesun',
@@ -109,17 +116,6 @@
   </div>
 
   <script>
-    /* FIRE PARTICLES (lighter for Android) */
-    const fireBg = document.getElementById("fire-bg");
-    setInterval(() => {
-      const flame = document.createElement("div");
-      flame.className = "flame";
-      flame.style.left = Math.random() * 100 + "vw";
-      flame.style.animationDuration = (2 + Math.random() * 2) + "s";
-      fireBg.appendChild(flame);
-      setTimeout(() => flame.remove(), 3500);
-    }, 200);
-
     /* PROFILE MODAL */
     const profileModal = document.getElementById("profileModal");
     const profileName  = document.getElementById("profileName");
@@ -136,7 +132,7 @@
       profileModal.style.display = "none";
     }
 
-    /* ✅ SAFE THEME TOGGLE (Default LIGHT) */
+    /* ✅ SAFE THEME TOGGLE */
     const toggle = document.getElementById("themeToggle");
     const root = document.documentElement;
 

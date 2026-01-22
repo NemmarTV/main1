@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Bisaya Fire Nation Blog</title>
+  <title>Bisaya Fire Nation</title>
 
   <meta name="theme-color" content="#ff4500" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -16,6 +16,16 @@
   <link rel="apple-touch-icon" href="images/bfn.png" />
 
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/button.css" />
+
+  <!-- ✅ Optional: quick inline CSS for post date meta (you can move to style.css) -->
+  <style>
+    .post-meta{
+      font-size: 0.85rem;
+      opacity: 0.75;
+      margin: 8px 0 14px;
+    }
+  </style>
 </head>
 
 <body>
@@ -25,7 +35,7 @@
     <h1 id="introText"></h1>
   </div> -->
 
-  <div id="fire-bg"></div>
+  <!-- <div id="fire-bg"></div> -->
 
   <header>
     <div class="header-inner">
@@ -45,18 +55,98 @@
     </div>
   </header>
 
+  <div class="container">
+    <main>
+
+      <article class="post event-post">
+        <div class="post-header">
+          <img class="post-icon" src="https://img.icons8.com/?size=100&id=2JGdk9ktxZyF&format=png&color=000000" alt="Event Icon">
+          <span class="post-type">Event</span>
+        </div>
+
+        <h2>🔥 BISAYA FIRE NATION TOURNAMENT 2026 🔥</h2>
+
+        <!-- ✅ POST DATE (AUTO TODAY) -->
+        <div class="post-meta">
+          📅 Posted on <span class="post-date" id="postDate"></span>
+        </div>
+
+        <br>
+
+        <p><strong>Get ready, clans! The battle for glory is here!</strong></p><br>
+
+        <div class="event-info">
+          <p>🗓 <strong>Date:</strong> January 31, 2026</p>
+          <p>⏰ <strong>Time:</strong> 8:00 PM (2–3 hours of action)</p>
+          <p>💰 <strong>Registration Fee:</strong> ₱50 per clan</p><br>
+        </div>
+
+        <h3>🎮 Game Modes</h3>
+        <ul>
+          <li>🔥 <strong>8 Teams (3v3)</strong> – Item Mode: iDate Revibe</li><br>
+        </ul>
+
+        <h3>🏆 Prizes</h3>
+        <ul>
+          <li>🥇 <strong>1st Place:</strong> ₱800 + Certificate</li>
+          <li>🥈 <strong>2nd Place:</strong> ₱200 + Certificate</li>
+          <li>📜 Participation Certificates for all clans</li><br>
+        </ul>
+
+        <h3>✨ Minor Awards</h3>
+        <ul>
+          <li>⚡ Best Clutch – 50 GC</li>
+          <li>👕 Best Clan Outfit – 100 GC</li>
+          <li>❤️ People’s Choice – 50 GC</li>
+          <li>🔥 Crowd’s Favorite Clan – 100 GC</li><br>
+        </ul>
+
+        <h3>📜 Register Now!</h3>
+        <p>
+          👉 <a href="https://forms.gle/o23uXUxBgxoTr8k86" target="_blank">Click here to register</a><br>
+          📞 <strong>Contact:</strong> 0954-301-4196
+        </p><br>
+
+        <p><strong>⚡ Don’t miss the chance to showcase your skills, style, and teamwork!</strong></p>
+      </article>
+
+    </main>
+  </div>
+
+  <div class="modal" id="profileModal">
+    <div class="modal-box">
+      <h3 id="profileName"></h3>
+      <p id="profileRole"></p>
+      <p id="profileDesc"></p>
+      <button onclick="closeProfile()">Close</button>
+    </div>
+  </div>
 
   <script>
+    /* ✅ POST DATE (AUTO TODAY) */
+    (function(){
+      const el = document.getElementById("postDate");
+      if(!el) return;
+      const d = new Date();
+      el.textContent = d.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    })();
+
     /* FIRE PARTICLES (lighter for Android) */
     const fireBg = document.getElementById("fire-bg");
-    setInterval(() => {
-      const flame = document.createElement("div");
-      flame.className = "flame";
-      flame.style.left = Math.random() * 100 + "vw";
-      flame.style.animationDuration = (2 + Math.random() * 2) + "s";
-      fireBg.appendChild(flame);
-      setTimeout(() => flame.remove(), 3500);
-    }, 200);
+    if (fireBg) {
+      setInterval(() => {
+        const flame = document.createElement("div");
+        flame.className = "flame";
+        flame.style.left = Math.random() * 100 + "vw";
+        flame.style.animationDuration = (2 + Math.random() * 2) + "s";
+        fireBg.appendChild(flame);
+        setTimeout(() => flame.remove(), 3500);
+      }, 200);
+    }
 
     /* PROFILE MODAL */
     const profileModal = document.getElementById("profileModal");
