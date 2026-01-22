@@ -13,9 +13,6 @@
 
 <body>
 
-  <!-- ✅ FIRE BACKGROUND -->
-  <!-- <div id="fire-bg"></div> -->
-
   <header>
     <div class="header-inner">
 
@@ -87,22 +84,7 @@
 
   <script>
   /* ===============================
-     FIRE PARTICLES (Blog)
-  ================================ */
-  const fireBg = document.getElementById("fire-bg");
-  if (fireBg) {
-    setInterval(() => {
-      const flame = document.createElement("div");
-      flame.className = "flame";
-      flame.style.left = Math.random() * 100 + "vw";
-      flame.style.animationDuration = (2 + Math.random() * 2) + "s";
-      fireBg.appendChild(flame);
-      setTimeout(() => flame.remove(), 3500);
-    }, 200);
-  }
-
-  /* ===============================
-     THEME TOGGLE (SYNCED)
+     THEME TOGGLE
   ================================ */
   const toggle = document.getElementById("themeToggle");
   const root = document.documentElement;
@@ -154,7 +136,7 @@
   }
 
   /* ===============================
-     PROFILE MODAL (FIXED)
+     PROFILE MODAL
   ================================ */
   const profileModal = document.getElementById("profileModal");
   const profileName  = document.getElementById("profileName");
@@ -164,11 +146,9 @@
 
   function openProfile(name, role, desc){
     if (!profileModal || !profileName || !profileRole || !profileDesc) return;
-
     profileName.textContent = name;
     profileRole.textContent = "Role: " + role;
     profileDesc.textContent = desc;
-
     profileModal.style.display = "flex";
     profileModal.setAttribute("aria-hidden", "false");
   }
@@ -187,7 +167,7 @@
     });
   }
 
-  /* ✅ ESC closes BOTH modals */
+  /* ESC closes both modals */
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeProfile();

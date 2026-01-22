@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Bisaya Fire Nation</title>
+
+  <meta name="theme-color" content="#ff4500" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="images/bfn.png" />
+  <link rel="apple-touch-icon" href="images/bfn.png" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .post-meta{font-size:.85rem;opacity:.7;margin-bottom:10px;display:block}
+
+    /* FILTER BUTTONS */
+    .staff-filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:10px 0 6px;
+    }
+    .filter-btn{
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid var(--glass-border, rgba(255,255,255,.28));
+      background: var(--glass, rgba(255,255,255,.62));
+      box-shadow: var(--shadow, 0 18px 60px rgba(0,0,0,.12));
+      cursor:pointer;
+      font-weight:700;
+      font-size:.85rem;
+      color: var(--text, #111);
+      user-select:none;
+      transition:.15s ease;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .filter-btn:hover{transform:translateY(-1px)}
+    .filter-btn.active{
+      outline:2px solid rgba(255,69,0,.35);
+      border-color: rgba(255,69,0,.55);
+    }
+
+    /* STAFF GRID */
+    .staff-list{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .staff-card{
+      padding:12px;
+      border-radius:14px;
+      background: var(--glass, rgba(255,255,255,.62));
+      box-shadow: var(--shadow, 0 18px 60px rgba(0,0,0,.18));
+      cursor:pointer;
+      transition:.2s ease;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      border:2px solid transparent;
+      position:relative;
+      overflow:hidden;
+    }
+    .staff-card:hover{transform: translateY(-3px) scale(1.02)}
+
+    /* RANK BORDER COLORS */
+    .rank-cm{ border-color: gold; }
+    .rank-council{ border-color: #ff3b3b; }
+    .rank-event{ border-color: #3b82ff; }
+
+    .staff-avatar{
+      width:42px;height:42px;border-radius:50%;
+      background:#fff;
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+    }
+    .staff-avatar img{width:26px;height:26px}
+
+    .staff-name{font-weight:800;line-height:1.1}
+    .staff-role{font-size:.8rem;opacity:.75;margin-top:2px}
+
+    /* BADGE (emoji) */
+    .rank-badge{
+      position:absolute;
+      top:10px;
+      right:10px;
+      font-size:18px;
+      line-height:1;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+      user-select:none;
+    }
+
+    /* MODAL */
+    .modal{
+      position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+      background:rgba(0,0,0,.6);z-index:9999;padding:16px;
+    }
+    .modal-box{
+      width:min(480px, 100%);
+      background: var(--bg2, #fff);
+      color: var(--text, #111);
+      border-radius:18px;
+      padding:18px;
+      text-align:center;
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+      border:3px solid rgba(255,215,0,.9);
+      position:relative;
+    }
+    .modal-badge{
+      position:absolute;
+      top:12px;
+      right:14px;
+      font-size:20px;
+      line-height:1;
+      user-select:none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+    }
+    .modal-avatar{
+      width:90px;height:90px;border-radius:50%;
+      margin:0 auto 10px;background:#f1f1f1;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .modal-avatar img{width:50px;height:50px}
+
+    .modal-box button{
+      margin-top:14px;width:100%;padding:10px;border:none;border-radius:12px;
+      background:#ff4500;color:#fff;font-weight:800;cursor:pointer;
+    }
+
+    /* hidden helper */
+    .hidden{display:none !important;}
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+      <img src="images/bfn.png" alt="BFN Logo" />
+    </div>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="event.html">Events</a>
+    </nav>
+
+    <button id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">☀️</button>
+  </div>
+</header>
+
+<div class="container">
+  <main>
+
+    <article class="post">
+      <h2>🔥 BFN Staff</h2>
+      <span class="post-meta">Use filters or click a staff to view profile</span>
+
+      <!-- ✅ FILTER BUTTONS -->
+      <div class="staff-filters" id="staffFilters">
+        <button class="filter-btn active" data-filter="all">✨ All</button>
+        <button class="filter-btn" data-filter="cm">👑 CM</button>
+        <button class="filter-btn" data-filter="council">🔥 Council</button>
+        <button class="filter-btn" data-filter="event">🎯 Event</button>
+      </div>
+
+      <div id="staffList" class="staff-list"></div>
+    </article>
+
+  </main>
+</div>
+
+<!-- PROFILE MODAL -->
+<div class="modal" id="profileModal" onclick="closeProfile()">
+  <div class="modal-box" id="modalBox" onclick="event.stopPropagation()">
+    <div class="modal-badge" id="modalBadge">👑</div>
+
+    <div class="modal-avatar">
+      <img id="profileAvatar" alt="Avatar">
+    </div>
+
+    <h3 id="profileName"></h3>
+    <p id="profileRole"></p>
+    <p id="profileDesc"></p>
+
+    <button onclick="closeProfile()">Close</button>
+  </div>
+</div>
+
+<script>
+/* =========================
+   DEFAULT AVATAR ICON
+========================= */
+const defaultAvatar = "https://img.icons8.com/?size=100&id=7819&format=png&color=000000";
+
+/* =========================
+   PROFILE MODAL
+========================= */
+const profileModal = document.getElementById("profileModal");
+const modalBox = document.getElementById("modalBox");
+const modalBadge = document.getElementById("modalBadge");
+const profileName = document.getElementById("profileName");
+const profileRole = document.getElementById("profileRole");
+const profileDesc = document.getElementById("profileDesc");
+const profileAvatar = document.getElementById("profileAvatar");
+
+function openProfile(name, role, desc, avatar, rankClass, badge){
+  profileName.textContent = name;
+  profileRole.textContent = "Role: " + role;
+  profileDesc.textContent = desc;
+  profileAvatar.src = avatar;
+
+  modalBox.className = "modal-box " + rankClass;
+  modalBadge.textContent = badge || "";
+
+  profileModal.style.display = "flex";
+}
+function closeProfile(){ profileModal.style.display = "none"; }
+
+/* =========================
+   THEME TOGGLE (SAFE)
+========================= */
+const toggle = document.getElementById("themeToggle");
+const root = document.documentElement;
+
+const savedTheme = localStorage.getItem("theme") || "light";
+root.setAttribute("data-theme", savedTheme);
+toggle.textContent = savedTheme === "light" ? "☀️" : "🌙";
+
+toggle.onclick = () => {
+  const newTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+  root.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+  toggle.textContent = newTheme === "light" ? "☀️" : "🌙";
+};
+
+/* =========================
+   STAFF DATA (random order)
+========================= */
+const staffData = [
+  { name:"CMNems[F]™", role:"Clan Master", rank:"cm", desc:"Founder and leader of Bisaya Fire Nation.", avatar: defaultAvatar },
+  { name:"Aesun[F]", role:"Vice Clan Master", rank:"cm", desc:"Handles operations and clan management.", avatar: defaultAvatar },
+  { name:"Nash[F]", role:"Vice Clan Master", rank:"cm", desc:"Strategic and event support leader.", avatar: defaultAvatar },
+  { name:"OneAboveAll[F]", role:"Shadow CM", rank:"cm", desc:"Silent enforcer and high command support.", avatar: defaultAvatar },
+
+  { name:"Kiet[F]", role:"High Council", rank:"council", desc:"Clan decision maker and senior member.", avatar: defaultAvatar },
+  { name:"Shokolayte[F]", role:"High Council / Event Manager", rank:"event", desc:"Handles events and major planning.", avatar: defaultAvatar },
+
+  { name:"Sebii[F]", role:"Event Manager", rank:"event", desc:"Organizes tournaments and activities.", avatar: defaultAvatar },
+
+  { name:"[CMGR] JamerLF | Jam", role:"Server Technician", rank:"other", desc:"Maintains server stability and tools.", avatar: defaultAvatar },
+  { name:"Pinkish", role:"Server Technician", rank:"other", desc:"Helps manage technical issues and systems.", avatar: defaultAvatar },
+
+  { name:"Madison[F]", role:"Examiner", rank:"other", desc:"Checks members and manages assessments.", avatar: defaultAvatar },
+  { name:"Nekoneppu[F]", role:"Examiner", rank:"other", desc:"Supports recruitment and evaluations.", avatar: defaultAvatar },
+
+  { name:"Jefax[F]", role:"Muse", rank:"other", desc:"Creative contributor of the clan.", avatar: defaultAvatar },
+  { name:"Jyxie", role:"Muse", rank:"other", desc:"Design and creative support.", avatar: defaultAvatar },
+
+  { name:"Mystogan[F]", role:"Escort", rank:"other", desc:"Protects members and handles security.", avatar: defaultAvatar }
+];
+
+/* Shuffle */
+function shuffle(array){
+  for(let i = array.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+shuffle(staffData);
+
+/* Rank → class + badge */
+function getRankStyle(rank){
+  if(rank === "cm") return { cls: "rank-cm", badge: "👑" };
+  if(rank === "council") return { cls: "rank-council", badge: "🔥" };
+  if(rank === "event") return { cls: "rank-event", badge: "🎯" };
+  return { cls: "", badge: "" };
+}
+
+/* =========================
+   RENDER STAFF
+========================= */
+const staffList = document.getElementById("staffList");
+
+function renderStaff(filter){
+  staffList.innerHTML = "";
+
+  staffData
+    .filter(m => filter === "all" ? true : m.rank === filter)
+    .forEach(member => {
+      const style = getRankStyle(member.rank);
+
+      const card = document.createElement("div");
+      card.className = "staff-card " + style.cls;
+
+      card.innerHTML = `
+        <div class="rank-badge">${style.badge}</div>
+        <div class="staff-avatar"><img src="${member.avatar}" alt="Avatar"></div>
+        <div>
+          <div class="staff-name">${member.name}</div>
+          <div class="staff-role">${member.role}</div>
+        </div>
+      `;
+
+      card.onclick = () => openProfile(
+        member.name,
+        member.role,
+        member.desc,
+        member.avatar,
+        style.cls,
+        style.badge
+      );
+
+      staffList.appendChild(card);
+    });
+}
+
+/* Initial render */
+renderStaff("all");
+
+/* =========================
+   FILTER BUTTONS
+========================= */
+const filtersWrap = document.getElementById("staffFilters");
+filtersWrap.addEventListener("click", (e) => {
+  const btn = e.target.closest(".filter-btn");
+  if(!btn) return;
+
+  const filter = btn.dataset.filter;
+
+  // active UI
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+
+  renderStaff(filter);
+});
+
+/* =========================
+   SERVICE WORKER
+========================= */
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js").catch(()=>{});
+}
+</script>
+
+</body>
+</html>

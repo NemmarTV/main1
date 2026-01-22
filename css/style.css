@@ -1,11 +1,6 @@
 /* ===============================
    style.css (ONE FILE)
    Bisaya Fire Nation Blog
-   - Light/Dark via html[data-theme]
-   - Android-friendly
-   - Header + nav + theme toggle
-   - Image cards + zoom modal
-   - Profile modal
 ================================ */
 
 /* RESET */
@@ -78,14 +73,28 @@ html, body, header, .post, .sidebar, .modal-box, #themeToggle, .nav a,
 }
 
 /* ===============================
-   BODY BACKGROUND
+   FIXED NON-REPEATING BACKGROUND
 ================================ */
 body{
   font-family: Arial, sans-serif;
   overflow-x:hidden;
-  position:relative;
   min-height:100vh;
   color: var(--text);
+  position:relative;
+  background:none !important;
+  isolation:isolate;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-attachment:fixed;
 
   background:
     radial-gradient(1000px 500px at 20% 0%, rgba(255,69,0,.10), transparent 55%),
@@ -93,7 +102,11 @@ body{
     linear-gradient(180deg, var(--bg), var(--bg2));
 }
 
-html[data-theme="dark"] body{
+html[data-theme="dark"] body::before{
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-attachment:fixed;
+
   background:
     radial-gradient(900px 520px at 18% 5%, rgba(255,90,31,.14), transparent 60%),
     radial-gradient(820px 520px at 82% 10%, rgba(255,204,51,.10), transparent 62%),
@@ -122,7 +135,6 @@ html[data-theme="light"] header{
   border-bottom: 1px solid rgba(0,0,0,.08);
 }
 
-/* Fallback if backdrop-filter unsupported */
 @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
   header{background: rgba(0,0,0,.35);}
   html[data-theme="light"] header{background: rgba(255,255,255,.75);}
@@ -137,7 +149,6 @@ html[data-theme="light"] header{
   gap:14px;
 }
 
-/* mobile header wrap */
 @media (max-width: 720px){
   .header-inner{
     flex-wrap:wrap;
@@ -224,50 +235,41 @@ html[data-theme="light"] .nav a{
   filter: brightness(.96);
 }
 
-/* ===============================
-   BLOG IMAGE GRID
-================================ */
+/* =========================
+   BLOG IMAGE GRID (3x3)
+========================= */
 .card-wrapper{
-  width:min(1100px, 92%);
-  margin:0 auto;
-  padding:28px 0 40px;
+  width: min(1240px, 100%);
+  margin: 24px auto;
+  padding: 0 16px;
 
-  display:flex;
-  flex-wrap:wrap;
-  gap:24px;
-  justify-content:center;
-  align-items:center;
+  display: grid;
+  grid-template-columns: repeat(3, 380px);
+  justify-content: center;
+  gap: 18px;
 }
 
-/* IMAGE CARD */
 .image-card{
-  width:140px;
-  height:260px;
-  border-radius:18px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
+  width: 380px;
+  height: 380px;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
 
   background: var(--glass);
   border: 1px solid var(--glass-border);
-
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
   box-shadow:
     0 18px 60px rgba(0,0,0,.22),
     0 0 18px rgba(255,69,0,.20);
-}
 
-@supports not ((backdrop-filter: blur(14px)) or (-webkit-backdrop-filter: blur(14px))){
-  .image-card{ background: rgba(20,20,20,.55); }
-  html[data-theme="light"] .image-card{ background: rgba(255,255,255,.88); }
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .image-card:hover{
-  transform:translateY(-8px);
+  transform: translateY(-3px);
   box-shadow:
     0 24px 80px rgba(0,0,0,.30),
     0 0 28px var(--glowA),
@@ -275,18 +277,28 @@ html[data-theme="light"] .nav a{
 }
 
 .image-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform: scale(1.02);
-  transition: transform var(--t) ease, filter var(--t) ease;
-}
-.image-card:hover img{
-  transform: scale(1.06);
-  filter: saturate(1.05) contrast(1.03);
+  width: 100%;
+  height: 100%;
+  display:block;
+  object-fit: cover;
+  object-position: center;
 }
 
-/* IMAGE ZOOM MODAL */
+/* RESPONSIVE */
+@media (max-width: 1240px){
+  .card-wrapper{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .image-card{ width:100%; aspect-ratio: 1 / 1; height:auto; }
+}
+@media (max-width: 900px){
+  .card-wrapper{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px){
+  .card-wrapper{ grid-template-columns: 1fr; }
+}
+
+/* ===============================
+   IMAGE MODAL
+================================ */
 .image-modal{
   position:fixed;
   inset:0;
@@ -353,30 +365,6 @@ html[data-theme="light"] .nav a{
   overflow:hidden;
 }
 
-/* Fallback if blur unsupported */
-@supports not ((backdrop-filter: blur(14px)) or (-webkit-backdrop-filter: blur(14px))){
-  .post, .sidebar, .modal-box{ background: rgba(20,20,20,.55); }
-  html[data-theme="light"] .post,
-  html[data-theme="light"] .sidebar,
-  html[data-theme="light"] .modal-box{ background: rgba(255,255,255,.85); }
-}
-
-/* subtle glow edge */
-.post::before, .sidebar::before, .modal-box::before{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  border-radius:18px;
-  pointer-events:none;
-  background: radial-gradient(500px 140px at 10% 0%, rgba(255,69,0,.18), transparent 60%);
-  opacity:.9;
-}
-html[data-theme="dark"] .post::before,
-html[data-theme="dark"] .sidebar::before,
-html[data-theme="dark"] .modal-box::before{
-  background: radial-gradient(520px 160px at 12% 0%, rgba(255,90,31,.22), transparent 62%);
-}
-
 .post{
   padding:18px 18px 16px;
   margin-bottom:16px;
@@ -393,7 +381,6 @@ html[data-theme="dark"] .modal-box::before{
 }
 .post p{
   line-height:1.6;
-  color: rgba(17,17,17,.88);
 }
 html[data-theme="dark"] .post p{
   color: rgba(245,246,255,.88);
@@ -411,44 +398,9 @@ html[data-theme="dark"] .post p{
   border:1px solid rgba(255,255,255,.14);
   background: rgba(255,69,0,.12);
 }
-html[data-theme="light"] .poster{
-  border:1px solid rgba(0,0,0,.10);
-}
+html[data-theme="light"] .poster{ border:1px solid rgba(0,0,0,.10); }
 .poster:hover{transform: translateY(-1px)}
-.poster:active{transform: translateY(0px)}
 .poster.admin{ background: rgba(255,69,0,.16) }
-
-/* SIDEBAR */
-.sidebar{
-  padding:16px;
-  height:fit-content;
-}
-@media (min-width: 901px){
-  .sidebar{ position:sticky; top:86px; }
-}
-.sidebar h3{
-  margin-bottom:10px;
-  letter-spacing:.2px;
-}
-.sidebar a{
-  display:block;
-  text-decoration:none;
-  color: var(--text);
-  padding:12px 12px;
-  border-radius:14px;
-  margin:8px 0;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.08);
-}
-html[data-theme="light"] .sidebar a{
-  background: rgba(0,0,0,.04);
-  border: 1px solid rgba(0,0,0,.06);
-}
-.sidebar a:hover{
-  transform: translateY(-1px);
-  background: rgba(255,69,0,.10);
-  border-color: rgba(255,69,0,.18);
-}
 
 /* ===============================
    PROFILE MODAL
@@ -496,112 +448,158 @@ html[data-theme="light"] .sidebar a{
 .modal-box button:hover{transform: translateY(-1px)}
 .modal-box button:active{transform: translateY(0px); filter: brightness(.95)}
 
-/* ===============================
-   MOBILE
-================================ */
-@media(max-width:768px){
-  .card-wrapper{
-    gap:18px;
-    padding:22px 0 32px;
-  }
-  .image-card{
-    width:120px;
-    height:220px;
-  }
-}
 
 /* ===============================
-   EXTRA POST STYLES
+   SIDEBAR (FIX)
 ================================ */
-.post-icon{
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
+.sidebar{
+  padding:16px;
+  height:fit-content;
 
-.event-post {
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 15px rgba(255, 69, 0, 0.4);
-}
-
-.post-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.post-icon {
-  width: 28px;
-  height: 28px;
-  filter: drop-shadow(0 0 5px var(--accent));
-}
-
-.post-type {
-  font-weight: bold;
-  color: var(--accent);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-
-/* =========================
-   BLOG IMAGE GRID (3x3)
-========================= */
-.card-wrapper{
-  width: min(1240px, 100%);
-  margin: 24px auto;
-  padding: 0 16px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 380px);
-  justify-content: center;
-  gap: 18px; /* ito yung "hindi masikip" spacing */
-}
-
-.image-card{
-  width: 380px;
-  height: 380px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-radius: 18px;
-  overflow: hidden;
-  cursor: pointer;
-
-  background: rgba(0,0,0,0.15);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-  transition: transform .2s ease, box-shadow .2s ease;
+  box-shadow: var(--shadow);
 }
 
-.image-card:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.32);
-}
-
-.image-card img{
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;      /* ✅ fit cover */
-  object-position: center;/* ✅ center crop */
-}
-
-/* =========================
-   RESPONSIVE (Phone/Tablet)
-========================= */
-@media (max-width: 1240px){
-  .card-wrapper{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .image-card{
-    width: 100%;
-    aspect-ratio: 1 / 1; /* keep square */
-    height: auto;
+@media (min-width: 901px){
+  .sidebar{
+    position: sticky;
+    top: 86px;
   }
 }
 
-@media (max-width: 900px){
-  .card-wrapper{ grid-template-columns: repeat(2, 1fr); }
+.sidebar h3{
+  margin-bottom:10px;
+  letter-spacing:.2px;
 }
 
-@media (max-width: 520px){
-  .card-wrapper{ grid-template-columns: 1fr; }
+.sidebar a{
+  display:block;
+  text-decoration:none;
+  color: var(--text);
+  padding:12px 12px;
+  border-radius:14px;
+  margin:8px 0;
+
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  font-weight:600;
+}
+
+html[data-theme="light"] .sidebar a{
+  background: rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.sidebar a:hover{
+  transform: translateY(-1px);
+  background: rgba(255,69,0,.10);
+  border-color: rgba(255,69,0,.18);
+}
+
+
+/* ✅ 15px both sides padding (safe version) */
+.header-inner{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.card-wrapper{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.container{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+/* Small professional event icon */
+.post-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.post-icon{
+  width:22px;
+  height:22px;
+  object-fit:contain;
+  filter: drop-shadow(0 0 4px rgba(255,69,0,.6));
+}
+
+.post-type{
+  font-weight:700;
+  letter-spacing:.5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.event-post{
+  text-align: justify;
+}
+
+.event-post h2,
+.event-post h3,
+.event-post .post-header{
+  text-align: left;
+}
+
+.event-post p{
+  line-height: 1.7;
+}
+
+.nav-icon{
+  width: 25px;     /* 🔹 smaller icon */
+  height: 25px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 6px;
+  opacity: 0.85;   /* optional: softer look */
+}
+
+/* MINIMIZED STATE */
+.music-widget.minimized{
+  width: auto;
+  padding: 8px 10px;
+}
+
+.music-widget.minimized .music-top,
+.music-widget.minimized .music-controls,
+.music-widget.minimized .music-row,
+.music-widget.minimized .music-mini{
+  display: none;
+}
+
+.music-mini-bar{
+  display:none;
+  align-items:center;
+  gap:8px;
+  font-size:.85rem;
+  font-weight:800;
+}
+
+.music-widget.minimized .music-mini-bar{
+  display:flex;
+}
+
+.music-min-btn{
+  border:none;
+  border-radius:10px;
+  padding:6px 8px;
+  cursor:pointer;
+  font-weight:900;
+  background: rgba(255,255,255,.75);
+  border:1px solid rgba(0,0,0,.1);
+}
+[data-theme="dark"] .music-min-btn{
+  background: rgba(0,0,0,.35);
+  color: var(--text, #fff);
+  border:1px solid rgba(255,255,255,.15);
 }

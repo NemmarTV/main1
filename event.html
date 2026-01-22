@@ -16,24 +16,36 @@
   <link rel="apple-touch-icon" href="images/bfn.png" />
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/button.css" />
+  <link rel="stylesheet" href="css/application.css">
 
-  <!-- ✅ Optional: quick inline CSS for post date meta (you can move to style.css) -->
   <style>
     .post-meta{
       font-size: 0.85rem;
       opacity: 0.75;
       margin: 8px 0 14px;
     }
+
+    /* ✅ Center the animated button */
+    .register-wrap{
+      display:flex;
+      justify-content:center;
+      margin: 16px 0 10px;
+    }
+
+    /* ✅ remove underline on wrapper link */
+    .register-wrap a{
+      text-decoration:none;
+    }
+
+    /* Center the Register Now title */
+    .event-post h3.register-title{
+      text-align: center;
+    }
+
   </style>
 </head>
 
 <body>
-
-  <!-- INTRO IS OFF -->
-  <!-- <div id="intro">
-    <h1 id="introText"></h1>
-  </div> -->
 
   <!-- <div id="fire-bg"></div> -->
 
@@ -66,48 +78,59 @@
 
         <h2>🔥 BISAYA FIRE NATION TOURNAMENT 2026 🔥</h2>
 
-        <!-- ✅ POST DATE (AUTO TODAY) -->
         <div class="post-meta">
           📅 Posted on <span class="post-date" id="postDate"></span>
         </div>
 
-        <br>
-
         <p><strong>Get ready, clans! The battle for glory is here!</strong></p><br>
 
         <div class="event-info">
-          <p>🗓 <strong>Date:</strong> January 31, 2026</p>
-          <p>⏰ <strong>Time:</strong> 8:00 PM (2–3 hours of action)</p>
-          <p>💰 <strong>Registration Fee:</strong> ₱50 per clan</p><br>
+          <p><strong>Date:</strong> January 31, 2026</p>
+          <p><strong>Time:</strong> 8:00 PM (2–3 hours of action)</p>
+          <p><strong>Registration Fee:</strong> ₱50 per clan</p><br>
         </div>
 
         <h3>🎮 Game Modes</h3>
-        <ul>
-          <li>🔥 <strong>8 Teams (3v3)</strong> – Item Mode: iDate Revibe</li><br>
-        </ul>
+        <p><strong>8 Teams (3v3)</strong> – Item Mode: iDate Revibe</p><br>
 
         <h3>🏆 Prizes</h3>
-        <ul>
-          <li>🥇 <strong>1st Place:</strong> ₱800 + Certificate</li>
-          <li>🥈 <strong>2nd Place:</strong> ₱200 + Certificate</li>
-          <li>📜 Participation Certificates for all clans</li><br>
-        </ul>
+        <p><strong>1st Place:</strong> ₱800 + Certificate</p>
+        <p><strong>2nd Place:</strong> ₱200 + Certificate</p>
+        <p>Participation Certificates for all clans</p><br>
 
         <h3>✨ Minor Awards</h3>
-        <ul>
-          <li>⚡ Best Clutch – 50 GC</li>
-          <li>👕 Best Clan Outfit – 100 GC</li>
-          <li>❤️ People’s Choice – 50 GC</li>
-          <li>🔥 Crowd’s Favorite Clan – 100 GC</li><br>
-        </ul>
+        <p>Best Clutch – 50 GC</p>
+        <p>Best Clan Outfit – 100 GC</p>
+        <p>People’s Choice – 50 GC</p>
+        <p>Crowd’s Favorite Clan – 100 GC</p><br>
+        
+        <p><strong>Contact:</strong> 📞 0954-301-4196</p>
 
-        <h3>📜 Register Now!</h3>
-        <p>
-          👉 <a href="https://forms.gle/o23uXUxBgxoTr8k86" target="_blank">Click here to register</a><br>
-          📞 <strong>Contact:</strong> 0954-301-4196
-        </p><br>
+        <p><strong>Don’t miss the chance to showcase your skills, style, and teamwork!</strong></p>
+          <br><br>
+        
+        <h3 class="register-title">📜 Register Now!</h3>
 
-        <p><strong>⚡ Don’t miss the chance to showcase your skills, style, and teamwork!</strong></p>
+        <!-- ✅ Uiverse button inserted here -->
+        <div class="register-wrap">
+          <a href="https://forms.gle/o23uXUxBgxoTr8k86" target="_blank" rel="noopener">
+            <button class="continue-application" type="button">
+              <div>
+                <div class="pencil"></div>
+                <div class="folder">
+                  <div class="top">
+                    <svg viewBox="0 0 24 27" aria-hidden="true">
+                      <path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path>
+                    </svg>
+                  </div>
+                  <div class="paper"></div>
+                </div>
+              </div>
+              Continue Application
+            </button>
+          </a>
+        </div>
+
       </article>
 
     </main>
@@ -123,7 +146,7 @@
   </div>
 
   <script>
-    /* ✅ POST DATE (AUTO TODAY) */
+    /* POST DATE (AUTO TODAY) */
     (function(){
       const el = document.getElementById("postDate");
       if(!el) return;
@@ -135,7 +158,7 @@
       });
     })();
 
-    /* FIRE PARTICLES (lighter for Android) */
+    /* FIRE PARTICLES (if enabled) */
     const fireBg = document.getElementById("fire-bg");
     if (fireBg) {
       setInterval(() => {
@@ -164,7 +187,7 @@
       profileModal.style.display = "none";
     }
 
-    /* ✅ SAFE THEME TOGGLE (Default LIGHT) */
+    /* THEME TOGGLE */
     const toggle = document.getElementById("themeToggle");
     const root = document.documentElement;
 

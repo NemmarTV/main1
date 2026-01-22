@@ -7,7 +7,6 @@
 
   <meta name="theme-color" content="#ff4500" />
   <meta name="mobile-web-app-capable" content="yes" />
-
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
@@ -19,11 +18,167 @@
 
   <style>
     /* Small meta text style */
-    .post-meta {
-      font-size: 0.85rem;
-      opacity: 0.7;
-      margin-bottom: 10px;
-      display: block;
+    .post-meta{
+      font-size:0.85rem;
+      opacity:0.7;
+      margin-bottom:10px;
+      display:block;
+    }
+
+    /* ✅ MUSIC WIDGET */
+    .music-widget{
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 9999;
+      width: min(360px, calc(100vw - 28px));
+      border-radius: 16px;
+      border: 1px solid var(--glass-border, rgba(255,255,255,.28));
+      background: var(--glass, rgba(255,255,255,.62));
+      box-shadow: var(--shadow, 0 18px 60px rgba(0,0,0,.18));
+      color: var(--text, #111);
+      padding: 10px;
+      user-select:none;
+      backdrop-filter: blur(10px);
+    }
+
+    .music-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+
+    .music-title{
+      font-weight:900;
+      font-size:.9rem;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      line-height:1.2;
+      max-width: 70%;
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+    .music-status{
+      font-size:.75rem;
+      opacity:.75;
+      white-space:nowrap;
+    }
+
+    .music-controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:space-between;
+      margin:8px 0;
+      flex-wrap:wrap;
+    }
+
+    .m-btn{
+      border:none;
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:900;
+      background: rgba(255,255,255,.75);
+      color:#111;
+      transition:.15s ease;
+      border:1px solid rgba(0,0,0,.08);
+      min-width:44px;
+    }
+    [data-theme="dark"] .m-btn{
+      background: rgba(0,0,0,.25);
+      color: var(--text, #fff);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .m-btn:active{transform:scale(.98)}
+    .m-btn.primary{
+      background:#ff4500;
+      color:#fff;
+      border:1px solid rgba(255,69,0,.4);
+    }
+
+    .music-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top:8px;
+    }
+
+    .vol-label{
+      font-size:.8rem;
+      font-weight:800;
+      opacity:.85;
+      min-width:58px;
+    }
+
+    .vol-range{
+      width:100%;
+      accent-color:#ff4500;
+    }
+
+    .music-mini{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:8px;
+      gap:10px;
+      font-size:.78rem;
+      opacity:.85;
+    }
+
+    .pill{
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.6);
+      white-space:nowrap;
+    }
+    [data-theme="dark"] .pill{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+    }
+
+    /* ✅ MINIMIZED STATE */
+    .music-widget.minimized{
+      width:auto;
+      padding:8px 10px;
+    }
+    .music-widget.minimized .music-top,
+    .music-widget.minimized .music-controls,
+    .music-widget.minimized .music-row,
+    .music-widget.minimized .music-mini{
+      display:none;
+    }
+
+    .music-mini-bar{
+      display:none;
+      align-items:center;
+      gap:8px;
+      font-size:.85rem;
+      font-weight:900;
+    }
+    .music-widget.minimized .music-mini-bar{
+      display:flex;
+    }
+
+    .music-min-btn{
+      border:none;
+      border-radius:10px;
+      padding:6px 8px;
+      cursor:pointer;
+      font-weight:900;
+      background: rgba(255,255,255,.75);
+      border:1px solid rgba(0,0,0,.1);
+    }
+    [data-theme="dark"] .music-min-btn{
+      background: rgba(0,0,0,.35);
+      color: var(--text, #fff);
+      border:1px solid rgba(255,255,255,.15);
     }
   </style>
 </head>
@@ -32,7 +187,6 @@
 
   <header>
     <div class="header-inner">
-
       <div class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
         <img src="images/bfn.png" alt="BFN Logo" />
       </div>
@@ -44,7 +198,6 @@
       </nav>
 
       <button id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">☀️</button>
-
     </div>
   </header>
 
@@ -94,24 +247,169 @@
         <p>New systems coming soon.</p>
       </article>
 
+      <article class="post">
+        <h2>🧾 BFN Website Changelog</h2>
+
+        <small class="post-meta">
+          📅 January 22, 2026 · Posted by
+          <span class="poster admin"
+            onclick="openProfile(
+              'Nemmar',
+              'Admin',
+              'Founder & Lead Administrator of Bisaya Fire Nation.'
+            )">
+            🔥 Nemmar
+          </span>
+        </small>
+
+        <p>✅ Added new <b>BFN Staff System</b> with profiles</p>
+        <p>✅ Added <b>rank colors and icons</b> (CM 👑, Council 🔥, Event 🎯)</p>
+        <p>✅ Added <b>staff filter buttons</b> (All / CM / Council / Event)</p>
+        <p>✅ Added <b>profile modal with avatars</b></p>
+        <p>✅ Improved Light / Dark mode system</p>
+        <p>✅ Improved mobile and Android compatibility</p>
+        <p>✅ UI and layout polishing</p>
+        <p>✅ Performance optimizations</p>
+        <p>🛠️ Bug fixes and system cleanup</p>
+
+        <p>
+          More updates and systems are already in development. Thank you for supporting Bisaya Fire Nation! 🔥
+        </p>
+      </article>
+
+      <article class="post">
+        <h2>🎉 BFN Website Version 2.0 Released!</h2>
+
+        <small class="post-meta">
+          📅 January 22, 2026 · Posted by
+          <span class="poster admin"
+            onclick="openProfile(
+              'Nemmar',
+              'Admin',
+              'Founder & Lead Administrator of Bisaya Fire Nation.'
+            )">
+            🔥 Nemmar
+          </span>
+        </small>
+
+        <p>
+          We’re proud to announce the official release of <b>BFN Website Version 2.0</b>! 🔥
+        </p>
+
+        <p>
+          This update brings a <b>full system upgrade</b>, <b>new features</b>, and a <b>modernized interface</b> for all Bisaya Fire Nation members.
+        </p>
+
+        <p><b>✨ Highlights:</b></p>
+
+        <p>👑 New Staff System with ranks and profiles</p>
+        <p>🔥 Rank colors and badges</p>
+        <p>🎯 Staff filter system</p>
+        <p>🖼️ Profile cards and modals</p>
+        <p>🌙 Improved Light / Dark mode</p>
+        <p>📱 Better mobile support</p>
+
+        <p>
+          This is only the beginning. More systems, features, and upgrades are coming soon.
+          Thank you for being part of Bisaya Fire Nation! ❤️🔥
+        </p>
+      </article>
+
+      <article class="post">
+        <h2>👑 Introducing the BFN Staff System</h2>
+
+        <small class="post-meta">
+          📅 January 22, 2026 · Posted by
+          <span class="poster admin"
+            onclick="openProfile(
+              'Nemmar',
+              'Admin',
+              'Founder & Lead Administrator of Bisaya Fire Nation.'
+            )">
+            🔥 Nemmar
+          </span>
+        </small>
+
+        <p>
+          We’re excited to introduce the brand new <b>BFN Staff System</b> on the website! 🔥
+        </p>
+
+        <p>This system allows members to:</p>
+
+        <p>👤 View staff profiles</p>
+        <p>👑 See ranks with colors and icons</p>
+        <p>🔥 Easily identify Clan Masters, Council, and Event Managers</p>
+        <p>🎯 Filter staff by role</p>
+
+        <p>
+          The Staff System makes the website more organized, more professional, and easier to navigate for everyone.
+        </p>
+
+        <p>
+          More improvements and features will be added in future updates. Stay tuned! 🔥
+        </p>
+      </article>
+
     </main>
 
     <aside class="sidebar">
       <h3>Links</h3>
-      <a href="#">🏠 Home</a>
+      <a href="index.html">🏠 Home</a>
       <a href="#">🔥 Announcements</a>
-      <a href="#">📢 Events</a>
+      <a href="event.html">📢 Events</a>
       <a href="https://discord.gg/snbNdkrcEr" target="_blank" rel="noopener">💬 Join Discord</a>
+      <a href="staff.html">
+        <img src="https://img.icons8.com/?size=100&id=MYH8OSXhd7MZ&format=png&color=000000" alt="Staff" class="nav-icon">
+        Staff
+      </a>
     </aside>
 
   </div>
 
+  <!-- ✅ PROFILE MODAL -->
   <div class="modal" id="profileModal">
     <div class="modal-box">
       <h3 id="profileName"></h3>
       <p id="profileRole"></p>
       <p id="profileDesc"></p>
       <button onclick="closeProfile()">Close</button>
+    </div>
+  </div>
+
+  <!-- ✅ AUDIO -->
+  <audio id="bgm" preload="auto"></audio>
+
+  <!-- ✅ MUSIC WIDGET (Minimize + Full Controls) -->
+  <div class="music-widget" id="musicWidget">
+
+    <!-- MINIMIZED BAR -->
+    <div class="music-mini-bar">
+      <span id="miniStatus">🎵 BGM</span>
+      <button class="music-min-btn" id="expandBtn" title="Expand">⬆️</button>
+    </div>
+
+    <!-- FULL PLAYER -->
+    <div class="music-top">
+      <div class="music-title" id="songName">🎵 BFN BGM</div>
+      <div class="music-status" id="songStatus">Paused</div>
+    </div>
+
+    <div class="music-controls">
+      <button class="m-btn" id="prevBtn" title="Previous">⏮️</button>
+      <button class="m-btn primary" id="playBtn" title="Play/Pause">▶️</button>
+      <button class="m-btn" id="nextBtn" title="Next">⏭️</button>
+      <button class="m-btn" id="shuffleBtn" title="Shuffle">🔀</button>
+      <button class="m-btn" id="minBtn" title="Minimize">➖</button>
+    </div>
+
+    <div class="music-row">
+      <span class="vol-label">🔊 Vol</span>
+      <input id="volRange" class="vol-range" type="range" min="0" max="100" value="50">
+    </div>
+
+    <div class="music-mini">
+      <span class="pill" id="modePill">Mode: Loop</span>
+      <span class="pill" id="trackPill">Track: 1/4</span>
     </div>
   </div>
 
@@ -149,6 +447,242 @@
       localStorage.setItem("theme", newTheme);
       toggle.textContent = newTheme === "light" ? "☀️" : "🌙";
     });
+
+    /* =========================
+       🎵 BFN MUSIC SYSTEM (FULL + MINIMIZE)
+       - Volume slider
+       - Shuffle button
+       - Next/Prev
+       - Song name
+       - Remember last track + volume + shuffle + play state across pages
+       - Autoplay on first user interaction
+       - Minimize/Expand (PC + phone)
+    ========================= */
+    const bgm = document.getElementById("bgm");
+
+    const songName = document.getElementById("songName");
+    const songStatus = document.getElementById("songStatus");
+    const trackPill = document.getElementById("trackPill");
+    const modePill = document.getElementById("modePill");
+    const miniStatus = document.getElementById("miniStatus");
+
+    const prevBtn = document.getElementById("prevBtn");
+    const playBtn = document.getElementById("playBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const shuffleBtn = document.getElementById("shuffleBtn");
+    const volRange = document.getElementById("volRange");
+
+    const musicWidget = document.getElementById("musicWidget");
+    const minBtn = document.getElementById("minBtn");
+    const expandBtn = document.getElementById("expandBtn");
+
+    const playlist = [
+      { src: "sounds/bgm_0001.ogg", name: "bgm_0001.ogg" },
+      { src: "sounds/bgm_0002.ogg", name: "bgm_0002.ogg" },
+      { src: "sounds/bgm_0003.ogg", name: "bgm_0003.ogg" },
+      { src: "sounds/bgm_0004.ogg", name: "bgm_0004.ogg" }
+    ];
+
+    const LS = {
+      enabled: "bfn_music_enabled",   // on/off
+      index: "bfn_music_index",       // 0..n-1
+      volume: "bfn_music_volume",     // 0..1
+      shuffle: "bfn_music_shuffle",   // 0/1
+      playing: "bfn_music_play’ng",   // 0/1
+      minimized: "bfn_music_minimized"// 0/1
+    };
+
+    // FIX: bad quote key from older versions
+    if (localStorage.getItem(LS.playing) === null && localStorage.getItem("bfn_music_playing") !== null){
+      localStorage.setItem(LS.playing, localStorage.getItem("bfn_music_playing"));
+      localStorage.removeItem("bfn_music_playing");
+    }
+    // FIX: ensure playing key is normal
+    LS.playing = "bfn_music_playing";
+
+    let musicEnabled = localStorage.getItem(LS.enabled) ?? "on";
+    let currentIndex = parseInt(localStorage.getItem(LS.index) ?? "0", 10);
+    if (Number.isNaN(currentIndex) || currentIndex < 0 || currentIndex >= playlist.length) currentIndex = 0;
+
+    let shuffleOn = (localStorage.getItem(LS.shuffle) ?? "0") === "1";
+    let wantPlaying = (localStorage.getItem(LS.playing) ?? "0") === "1";
+    let startedOnce = false;
+
+    // Volume restore
+    let savedVol = parseFloat(localStorage.getItem(LS.volume) ?? "0.5");
+    if (Number.isNaN(savedVol) || savedVol < 0 || savedVol > 1) savedVol = 0.5;
+    bgm.volume = savedVol;
+    volRange.value = String(Math.round(savedVol * 100));
+
+    function updateMiniBar(){
+      miniStatus.textContent = (bgm.paused ? "⏸️ " : "▶️ ") + playlist[currentIndex].name;
+    }
+
+    function setSongUI(){
+      songName.textContent = "🎵 " + playlist[currentIndex].name;
+      trackPill.textContent = `Track: ${currentIndex + 1}/${playlist.length}`;
+      modePill.textContent = shuffleOn ? "Mode: Shuffle" : "Mode: Loop";
+      shuffleBtn.style.opacity = shuffleOn ? "1" : ".65";
+      updateMiniBar();
+    }
+
+    function setStatusUI(){
+      const isPaused = bgm.paused;
+      songStatus.textContent = (musicEnabled === "off") ? "Off" : (isPaused ? "Paused" : "Playing");
+      playBtn.textContent = (musicEnabled === "off") ? "▶️" : (isPaused ? "▶️" : "⏸️");
+      playBtn.title = isPaused ? "Play" : "Pause";
+      updateMiniBar();
+    }
+
+    function loadTrack(index){
+      currentIndex = index;
+      localStorage.setItem(LS.index, String(currentIndex));
+      bgm.src = playlist[currentIndex].src;
+      bgm.load();
+      setSongUI();
+      setStatusUI();
+    }
+
+    function pickRandomIndex(exceptIndex){
+      if (playlist.length <= 1) return 0;
+      let idx = Math.floor(Math.random() * playlist.length);
+      if (idx === exceptIndex) idx = (idx + 1) % playlist.length;
+      return idx;
+    }
+
+    async function safePlay(){
+      if (musicEnabled === "off") return;
+      try{
+        await bgm.play();
+        startedOnce = true;
+        localStorage.setItem(LS.playing, "1");
+      }catch(e){
+        // blocked until user gesture
+      }
+      setStatusUI();
+    }
+
+    function pauseMusic(){
+      bgm.pause();
+      localStorage.setItem(LS.playing, "0");
+      setStatusUI();
+    }
+
+    function nextTrack(){
+      const nextIndex = shuffleOn ? pickRandomIndex(currentIndex)
+                                 : (currentIndex + 1) % playlist.length;
+      loadTrack(nextIndex);
+      safePlay();
+    }
+
+    function prevTrack(){
+      const prevIndex = shuffleOn ? pickRandomIndex(currentIndex)
+                                 : (currentIndex - 1 + playlist.length) % playlist.length;
+      loadTrack(prevIndex);
+      safePlay();
+    }
+
+    /* Minimize */
+    function setMinimized(min){
+      if (min){
+        musicWidget.classList.add("minimized");
+        localStorage.setItem(LS.minimized, "1");
+      }else{
+        musicWidget.classList.remove("minimized");
+        localStorage.setItem(LS.minimized, "0");
+      }
+    }
+
+    minBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setMinimized(true);
+    });
+
+    expandBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setMinimized(false);
+    });
+
+    // Track ended -> next
+    bgm.addEventListener("ended", nextTrack);
+
+    // Buttons
+    playBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (musicEnabled === "off"){
+        musicEnabled = "on";
+        localStorage.setItem(LS.enabled, "on");
+        await safePlay();
+        return;
+      }
+
+      if (bgm.paused) await safePlay();
+      else pauseMusic();
+    });
+
+    nextBtn.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); nextTrack(); });
+    prevBtn.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); prevTrack(); });
+
+    shuffleBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      shuffleOn = !shuffleOn;
+      localStorage.setItem(LS.shuffle, shuffleOn ? "1" : "0");
+      setSongUI();
+    });
+
+    volRange.addEventListener("input", () => {
+      const v = Number(volRange.value) / 100;
+      bgm.volume = v;
+      localStorage.setItem(LS.volume, String(v));
+      updateMiniBar();
+    });
+
+    // Autoplay on first interaction (browser rule)
+    function shouldTriggerBGM(target){
+      return target.closest("a, button, .btn, .poster, .logo, .nav, .sidebar, .music-widget");
+    }
+
+    async function firstUserStart(e){
+      if (!shouldTriggerBGM(e.target)) return;
+
+      if (!startedOnce && wantPlaying && musicEnabled !== "off"){
+        await safePlay();
+      }
+
+      document.removeEventListener("pointerdown", firstUserStart);
+      document.removeEventListener("click", firstUserStart);
+    }
+
+    document.addEventListener("pointerdown", firstUserStart, { passive:true });
+    document.addEventListener("click", firstUserStart);
+
+    // Save on unload
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem(LS.enabled, musicEnabled);
+      localStorage.setItem(LS.index, String(currentIndex));
+      localStorage.setItem(LS.shuffle, shuffleOn ? "1" : "0");
+      localStorage.setItem(LS.volume, String(bgm.volume));
+      localStorage.setItem(LS.playing, bgm.paused ? "0" : "1");
+      localStorage.setItem(LS.minimized, musicWidget.classList.contains("minimized") ? "1" : "0");
+    });
+
+    // Init
+    loadTrack(currentIndex);
+
+    const wasMin = (localStorage.getItem(LS.minimized) ?? "0") === "1";
+    if (wasMin) setMinimized(true);
+
+    if (musicEnabled === "off"){
+      pauseMusic();
+      songStatus.textContent = "Off";
+    } else {
+      setStatusUI();
+    }
 
     /* Service Worker */
     if ("serviceWorker" in navigator) {
