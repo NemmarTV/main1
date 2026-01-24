@@ -147,6 +147,8 @@ html[data-theme="light"] header{
   align-items:center;
   justify-content:space-between;
   gap:14px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 @media (max-width: 720px){
@@ -242,6 +244,8 @@ html[data-theme="light"] .nav a{
   width: min(1240px, 100%);
   margin: 24px auto;
   padding: 0 16px;
+  padding-left: 15px;
+  padding-right: 15px;
 
   display: grid;
   grid-template-columns: repeat(3, 380px);
@@ -347,6 +351,8 @@ html[data-theme="light"] .nav a{
   display:grid;
   grid-template-columns: 1fr 280px;
   gap:18px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 @media (max-width: 900px){
   .container{grid-template-columns: 1fr}
@@ -448,7 +454,6 @@ html[data-theme="light"] .poster{ border:1px solid rgba(0,0,0,.10); }
 .modal-box button:hover{transform: translateY(-1px)}
 .modal-box button:active{transform: translateY(0px); filter: brightness(.95)}
 
-
 /* ===============================
    SIDEBAR (FIX)
 ================================ */
@@ -500,24 +505,6 @@ html[data-theme="light"] .sidebar a{
   border-color: rgba(255,69,0,.18);
 }
 
-
-/* ✅ 15px both sides padding (safe version) */
-.header-inner{
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.card-wrapper{
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.container{
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-
 /* Small professional event icon */
 .post-header{
   display:flex;
@@ -556,18 +543,147 @@ html[data-theme="light"] .sidebar a{
 }
 
 .nav-icon{
-  width: 25px;     /* 🔹 smaller icon */
+  width: 25px;
   height: 25px;
   object-fit: contain;
   vertical-align: middle;
   margin-right: 6px;
-  opacity: 0.85;   /* optional: softer look */
+  opacity: 0.85;
 }
 
-/* MINIMIZED STATE */
+/* Small meta text style */
+.post-meta{
+  font-size:0.85rem;
+  opacity:0.7;
+  margin-bottom:10px;
+  display:block;
+}
+
+/* ✅ MUSIC WIDGET */
+.music-widget{
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9999;
+  width: min(360px, calc(100vw - 28px));
+  border-radius: 16px;
+  border: 1px solid var(--glass-border, rgba(255,255,255,.28));
+  background: var(--glass, rgba(255,255,255,.62));
+  box-shadow: var(--shadow, 0 18px 60px rgba(0,0,0,.18));
+  color: var(--text, #111);
+  padding: 10px;
+  user-select:none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.music-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.music-title{
+  font-weight:900;
+  font-size:.9rem;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  line-height:1.2;
+  max-width: 70%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.music-status{
+  font-size:.75rem;
+  opacity:.75;
+  white-space:nowrap;
+}
+
+.music-controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:space-between;
+  margin:8px 0;
+  flex-wrap:wrap;
+}
+
+.m-btn{
+  border:none;
+  border-radius:12px;
+  padding:8px 10px;
+  cursor:pointer;
+  font-weight:900;
+  background: rgba(255,255,255,.75);
+  color:#111;
+  transition:.15s ease;
+  border:1px solid rgba(0,0,0,.08);
+  min-width:44px;
+}
+[data-theme="dark"] .m-btn{
+  background: rgba(0,0,0,.25);
+  color: var(--text, #fff);
+  border:1px solid rgba(255,255,255,.12);
+}
+.m-btn:active{transform:scale(.98)}
+.m-btn.primary{
+  background:#ff4500;
+  color:#fff;
+  border:1px solid rgba(255,69,0,.4);
+}
+
+.music-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:8px;
+}
+
+.vol-label{
+  font-size:.8rem;
+  font-weight:800;
+  opacity:.85;
+  min-width:58px;
+}
+
+.vol-range{
+  width:100%;
+  accent-color:#ff4500;
+}
+
+.music-mini{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:8px;
+  gap:10px;
+  font-size:.78rem;
+  opacity:.85;
+}
+
+.pill{
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.6);
+  white-space:nowrap;
+}
+[data-theme="dark"] .pill{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.22);
+}
+
+/* ✅ MINIMIZED STATE (PC + PHONE SAFE) */
 .music-widget.minimized{
   width: auto;
+  max-width: calc(100vw - 28px);
   padding: 8px 10px;
+  border-radius: 14px;
 }
 
 .music-widget.minimized .music-top,
@@ -582,11 +698,20 @@ html[data-theme="light"] .sidebar a{
   align-items:center;
   gap:8px;
   font-size:.85rem;
-  font-weight:800;
+  font-weight:900;
+  line-height:1.1;
+  max-width: calc(100vw - 28px);
 }
 
 .music-widget.minimized .music-mini-bar{
   display:flex;
+}
+
+#miniStatus{
+  max-width: 230px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .music-min-btn{
@@ -602,4 +727,9 @@ html[data-theme="light"] .sidebar a{
   background: rgba(0,0,0,.35);
   color: var(--text, #fff);
   border:1px solid rgba(255,255,255,.15);
+}
+
+/* Extra safety for very small phones */
+@media (max-width: 380px){
+  #miniStatus{ max-width: 170px; }
 }
