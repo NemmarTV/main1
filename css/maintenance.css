@@ -27,7 +27,7 @@ body{
 }
 
 /* ===============================
-   MAINTENANCE HERO
+   MAINTENANCE WRAPPER
 ============================== */
 .maintenance-wrapper{
   position:fixed;
@@ -35,10 +35,10 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
   background:
     radial-gradient(circle at top, rgba(255,90,0,.15), transparent 60%),
     linear-gradient(180deg, #0b0b10, #0f0f18);
-  overflow:hidden;
 }
 
 /* subtle background texture */
@@ -50,6 +50,48 @@ body{
   background-size:300px;
   opacity:.04;
   pointer-events:none;
+}
+
+/* ===============================
+   ✨ BACKGROUND FLOATING GLOWS
+============================== */
+.glow{
+  position:absolute;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  filter: blur(80px);
+  opacity:.35;
+  animation: float 14s ease-in-out infinite;
+  z-index:0;
+  pointer-events:none;
+}
+
+.glow.orange{
+  background:#ff6a00;
+  top:10%;
+  left:8%;
+  animation-delay:0s;
+}
+
+.glow.red{
+  background:#ff2a00;
+  bottom:12%;
+  right:10%;
+  animation-delay:4s;
+}
+
+.glow.yellow{
+  background:#ffb300;
+  top:55%;
+  right:25%;
+  animation-delay:8s;
+}
+
+@keyframes float{
+  0%{ transform: translateY(0) scale(1); }
+  50%{ transform: translateY(-30px) scale(1.08); }
+  100%{ transform: translateY(0) scale(1); }
 }
 
 /* ===============================
@@ -68,7 +110,13 @@ body{
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 30px 80px rgba(0,0,0,.6);
-  animation: maintIn .7s ease both;
+  animation: maintIn .7s ease both, breathe 6s ease-in-out infinite;
+}
+
+/* box breathe glow */
+@keyframes breathe{
+  0%,100%{ box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+  50%{ box-shadow: 0 35px 95px rgba(255,90,0,.25); }
 }
 
 /* ===============================
@@ -82,40 +130,58 @@ body{
   font-weight:900;
   letter-spacing:.5px;
   background: linear-gradient(90deg, #ff2a00, #ff9a00);
-  box-shadow: 0 0 26px rgba(255,120,0,.7);
   color:#fff;
+  animation: pulseGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow{
+  0%,100%{ box-shadow: 0 0 22px rgba(255,120,0,.6); }
+  50%{ box-shadow: 0 0 38px rgba(255,160,0,.95); }
 }
 
 /* ===============================
-   TEXT
+   TITLE (SHIMMER)
 ============================== */
 .maintenance-box h1{
   font-size: clamp(30px, 4.5vw, 48px);
   font-weight:900;
   text-transform:uppercase;
   margin-bottom:14px;
-  color:#fff;
+
+  background: linear-gradient(90deg, #fff, #ffb000, #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
 }
 
+@keyframes shimmer{
+  from{ background-position: 0% center; }
+  to{ background-position: 200% center; }
+}
+
+/* ===============================
+   TEXT
+============================== */
 .maintenance-box p{
   font-size:1.08rem;
   line-height:1.55;
   color: rgba(255,255,255,.9);
   max-width:620px;
   margin:0 auto;
+  animation: fadeUp .9s ease .25s both;
 }
 
-/* ===============================
-   FOOT NOTE
-============================== */
 .maintenance-note{
   margin-top:22px;
   font-size:.9rem;
   opacity:.7;
+  color: rgba(255,255,255,.85);
+  animation: fadeUp .9s ease .45s both;
 }
 
 /* ===============================
-   ANIMATION
+   ENTRY ANIMATIONS
 ============================== */
 @keyframes maintIn{
   from{
@@ -125,5 +191,25 @@ body{
   to{
     opacity:1;
     transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(10px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* ===============================
+   MOBILE TWEAKS
+============================== */
+@media (max-width: 520px){
+  .maintenance-box{
+    padding:34px 22px;
+    border-radius:18px;
+  }
+  .glow{
+    width:260px;
+    height:260px;
+    filter: blur(70px);
   }
 }
