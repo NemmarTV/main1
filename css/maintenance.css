@@ -95,11 +95,90 @@ body{
 }
 
 /* ===============================
+   🔥 PURE CSS FIRE SPARKS
+   - ember particles rising
+============================== */
+.sparks{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+/* each spark */
+.spark{
+  position:absolute;
+  bottom:-20px;
+  width:6px;
+  height:6px;
+  border-radius:999px;
+  background: radial-gradient(circle, rgba(255,210,120,1), rgba(255,80,0,.9), rgba(255,0,0,0));
+  opacity:.9;
+  filter: blur(.2px);
+  animation: rise 4.8s linear infinite;
+  box-shadow: 0 0 16px rgba(255,120,0,.55);
+}
+
+/* variations using nth-child (no JS) */
+.spark:nth-child(1){ left:5%;  animation-duration:4.0s; animation-delay:.2s; transform: scale(.8); }
+.spark:nth-child(2){ left:10%; animation-duration:5.4s; animation-delay:1.2s; transform: scale(1.1); }
+.spark:nth-child(3){ left:14%; animation-duration:3.9s; animation-delay:2.4s; transform: scale(.6); }
+.spark:nth-child(4){ left:18%; animation-duration:6.2s; animation-delay:.8s; transform: scale(1.3); }
+.spark:nth-child(5){ left:22%; animation-duration:4.7s; animation-delay:1.9s; transform: scale(.7); }
+
+.spark:nth-child(6){ left:28%; animation-duration:5.8s; animation-delay:.4s; transform: scale(1.2); }
+.spark:nth-child(7){ left:32%; animation-duration:4.3s; animation-delay:2.1s; transform: scale(.65); }
+.spark:nth-child(8){ left:36%; animation-duration:6.6s; animation-delay:1.5s; transform: scale(1.4); }
+.spark:nth-child(9){ left:40%; animation-duration:4.9s; animation-delay:.9s; transform: scale(.8); }
+.spark:nth-child(10){left:44%; animation-duration:5.1s; animation-delay:2.8s; transform: scale(1.0); }
+
+.spark:nth-child(11){left:48%; animation-duration:4.2s; animation-delay:1.1s; transform: scale(.7); }
+.spark:nth-child(12){left:52%; animation-duration:6.0s; animation-delay:.6s; transform: scale(1.35); }
+.spark:nth-child(13){left:56%; animation-duration:4.6s; animation-delay:2.2s; transform: scale(.9); }
+.spark:nth-child(14){left:60%; animation-duration:6.8s; animation-delay:1.8s; transform: scale(1.5); }
+.spark:nth-child(15){left:64%; animation-duration:4.1s; animation-delay:.3s; transform: scale(.6); }
+
+.spark:nth-child(16){left:68%; animation-duration:5.7s; animation-delay:2.6s; transform: scale(1.2); }
+.spark:nth-child(17){left:72%; animation-duration:4.5s; animation-delay:1.4s; transform: scale(.75); }
+.spark:nth-child(18){left:76%; animation-duration:6.4s; animation-delay:.7s; transform: scale(1.45); }
+.spark:nth-child(19){left:80%; animation-duration:4.8s; animation-delay:2.0s; transform: scale(.85); }
+.spark:nth-child(20){left:84%; animation-duration:5.9s; animation-delay:1.0s; transform: scale(1.1); }
+
+.spark:nth-child(21){left:88%; animation-duration:4.0s; animation-delay:2.9s; transform: scale(.65); }
+.spark:nth-child(22){left:92%; animation-duration:6.1s; animation-delay:1.7s; transform: scale(1.35); }
+.spark:nth-child(23){left:96%; animation-duration:4.4s; animation-delay:.5s; transform: scale(.7); }
+.spark:nth-child(24){left:15%; animation-duration:6.9s; animation-delay:3.1s; transform: scale(1.55); }
+.spark:nth-child(25){left:35%; animation-duration:5.2s; animation-delay:3.4s; transform: scale(.95); }
+
+.spark:nth-child(26){left:55%; animation-duration:4.3s; animation-delay:3.0s; transform: scale(.75); }
+.spark:nth-child(27){left:75%; animation-duration:6.5s; animation-delay:2.7s; transform: scale(1.4); }
+.spark:nth-child(28){left:25%; animation-duration:4.9s; animation-delay:3.6s; transform: scale(.85); }
+.spark:nth-child(29){left:45%; animation-duration:5.6s; animation-delay:3.8s; transform: scale(1.15); }
+.spark:nth-child(30){left:85%; animation-duration:4.1s; animation-delay:3.3s; transform: scale(.65); }
+
+/* rise animation: drift + fade */
+@keyframes rise{
+  0%{
+    transform: translateY(0) translateX(0) scale(1);
+    opacity:0;
+  }
+  10%{ opacity:.9; }
+  60%{
+    opacity:.85;
+  }
+  100%{
+    transform: translateY(-110vh) translateX(70px) scale(.4);
+    opacity:0;
+  }
+}
+
+/* ===============================
    BOX
 ============================== */
 .maintenance-box{
   position:relative;
-  z-index:1;
+  z-index:2;
   max-width:760px;
   width:calc(100% - 32px);
   padding:40px 30px;
