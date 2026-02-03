@@ -1,126 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Bisaya Fire Nation</title>
+  <title>Bisaya Fire Nation | Event On Hold</title>
 
+  <!-- Theme -->
   <meta name="theme-color" content="#ff4500" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <link rel="manifest" href="manifest.json" />
+  <!-- Icons -->
   <link rel="icon" href="images/bfn.png" />
   <link rel="apple-touch-icon" href="images/bfn.png" />
 
+  <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/application.css" />
+  <link rel="stylesheet" href="css/maintenance.css" />
 
   <style>
-    .post-meta{
-      font-size: 0.85rem;
-      opacity: 0.75;
-      margin: 8px 0 14px;
+    /* ===============================
+       KEEP NAVBAR ACTIVE
+    ============================== */
+    header,
+    header * {
+      pointer-events: auto;
+      z-index: 1000;
     }
 
-    .register-wrap{
-      display:flex;
-      justify-content:center;
-      margin: 16px 0 10px;
-    }
-
-    .register-wrap a{
-      text-decoration:none;
-    }
-
-    .event-post h3.register-title{
-      text-align: center;
-    }
-
-    .event-images{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap:12px;
-      margin:20px 0;
-    }
-
-    .event-images img{
-      width:100%;
-      height:160px;
-      object-fit:cover;
-      border-radius:10px;
-      box-shadow:0 6px 20px rgba(0,0,0,.25);
-      cursor: zoom-in;
-    }
-
-    /* ✅ CLICK TO ZOOM MODAL */
-    .img-modal{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.75);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      z-index: 9999;
-    }
-
-    .img-modal.show{
-      display: flex;
-    }
-
-    .img-modal .img-box{
-      position: relative;
-      width: min(920px, 96vw);
-      max-height: 86vh;
-    }
-
-    .img-modal img{
-      width: 100%;
-      height: auto;
-      max-height: 86vh;
-      object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 18px 70px rgba(0,0,0,.45);
-      background: rgba(255,255,255,.06);
-      cursor: default;
-    }
-
-    .img-close{
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      width: 42px;
-      height: 42px;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 20px;
-      line-height: 42px;
-      background: rgba(0,0,0,.75);
-      color: #fff;
-      box-shadow: 0 10px 35px rgba(0,0,0,.4);
-    }
-
-    .img-close:active{
-      transform: scale(.98);
+    /* Push maintenance content below navbar */
+    .maintenance-wrapper{
+      padding-top: 90px;
     }
   </style>
 </head>
 
 <body>
 
+<!-- ===============================
+     HEADER / NAVBAR (ACTIVE)
+============================== -->
 <header>
   <div class="header-inner">
-    <div class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-      <img src="images/bfn.png" alt="BFN Logo" />
-    </div>
+      <div class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <img src="images/LU1.png" alt="LiloanUnited Logo" />
+      </div>
 
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="update.html">Update</a>
-      <a href="event.html">Events</a>
+      <a href="event.html" class="active">Events</a>
       <a href="download.html">Downloads</a>
       <a href="staff.html">Staff</a>
     </nav>
@@ -129,442 +58,49 @@
   </div>
 </header>
 
-<div class="container">
-  <main>
+<!-- ===============================
+     MAINTENANCE-STYLE EVENT PAGE
+============================== -->
+<main class="maintenance-wrapper">
 
-    <article class="post event-post">
-      <div class="post-header">
-        <img class="post-icon" src="https://img.icons8.com/?size=100&id=2JGdk9ktxZyF&format=png&color=000000" alt="Event Icon">
-        <span class="post-type">Event</span>
-      </div>
+  <!-- ✨ Animated glow background -->
+  <div class="glow orange"></div>
+  <div class="glow red"></div>
+  <div class="glow yellow"></div>
 
-      <h2>BISAYA FIRE NATION TOURNAMENT 2026</h2>
-
-      <div class="post-meta">
-        📅 Posted on <span id="postDate"></span>
-      </div>
-
-      <p><strong>The Battle of the Clans is fast approaching!!</strong></p><br>
-
-      <p>
-        Bisaya Fire Nation formally announces its upcoming clan-versus-clan iDate tournament.
-        This event aims to provide a fair, organized, and competitive environment where clans can demonstrate
-        skill, coordination, and teamwork.
-      </p><br>
-
-      <p><strong>🗓️ Date:</strong> January 31, 2026</p>
-      <p><strong>⏰ Time:</strong> 8:00 PM</p>
-      <p><strong>⌛ Estimated Duration:</strong> 2–3 hours</p>
-      <p><strong>💰 Registration Fee:</strong> ₱50 per clan</p><br>
-
-      <h3>🎮 Tournament Details</h3>
-      <p>8 Clans</p>
-      <p>3v3 Format</p>
-      <p>Item Mode: iDate Revibe</p><br>
-
-      <h3>🏆 Prizes</h3>
-      <p><strong>1st Place:</strong> ₱1000 + Certificate</p>
-      <p><strong>2nd Place:</strong> ₱200 + Certificate</p>
-      <p>Participation Certificates will be provided to all registered clans.</p><br>
-
-      <h3>✨ Special Awards</h3>
-      <p>Best Clutch – 50 GC</p>
-      <p>Best Clan Outfit – 100 GC</p>
-      <p>People’s Choice – 50 GC</p>
-      <p>Crowd’s Favorite Clan – 100 GC</p><br>
-
-      <p><strong>📩 For inquiries:</strong> DM <strong>@shoko.layte on Discord</strong></p><br>
-
-      <p><strong>We encourage all interested clans to register early and prepare accordingly. We look forward to your participation! 🤍</strong></p>
-
-      <h3>📸 Event Images</h3>
-
-      <div class="event-images">
-        <img src="images/event/1.png" alt="Event Image 1" onclick="openImg(this.src)">
-        <img src="images/event/1.png" alt="Event Image 2" onclick="openImg(this.src)">
-        <img src="images/event/1.png" alt="Event Image 3" onclick="openImg(this.src)">
-        <img src="images/event/1.png" alt="Event Image 4" onclick="openImg(this.src)">
-      </div>
-
-      <h3 class="register-title">📜 Register Now!</h3>
-
-      <!-- ✅ BUTTON — NOT MODIFIED -->
-      <div class="register-wrap">
-        <a href="https://forms.gle/o23uXUxBgxoTr8k86" target="_blank" rel="noopener">
-          <button class="continue-application" type="button">
-            <div>
-              <div class="pencil"></div>
-              <div class="folder">
-                <div class="top">
-                  <svg viewBox="0 0 24 27">
-                    <path d="M1,0 L23,0 C23.5522847,0 24,0.4477 24,1 L24,8.17 C24,8.70 23.78,9.21 23.41,9.58 L20.58,12.41 C20.21,12.78 20,13.29 20,13.82 L20,26 C20,26.55 19.55,27 19,27 L1,27 C0.44,27 0,26.55 0,26 L0,1 C0,0.44 0.44,0 1,0 Z"/>
-                  </svg>
-                </div>
-                <div class="paper"></div>
-              </div>
-            </div>
-            Continue Application
-          </button>
-        </a>
-      </div>
-
-    </article>
-
-  </main>
-</div>
-
-<!-- ✅ IMAGE ZOOM MODAL (MUST BE INSIDE BODY) -->
-<div class="img-modal" id="imgModal" aria-hidden="true">
-  <div class="img-box" role="dialog" aria-label="Image preview">
-    <button class="img-close" type="button" onclick="closeImg()" aria-label="Close">✕</button>
-    <img id="imgModalPic" src="" alt="Preview">
-  </div>
-</div>
-
-<!-- ✅ AUDIO -->
-<audio id="bgm" preload="auto"></audio>
-
-<!-- ✅ MUSIC WIDGET (Minimize + Full Controls) -->
-<div class="music-widget" id="musicWidget">
-
-  <!-- MINIMIZED BAR -->
-  <div class="music-mini-bar">
-    <span id="miniStatus">🎵 BGM</span>
-    <button class="music-min-btn" id="expandBtn" title="Expand" type="button">⬆️</button>
+  <!-- 🔥 PURE CSS FIRE SPARKS -->
+  <div class="sparks" aria-hidden="true">
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
   </div>
 
-  <!-- FULL PLAYER -->
-  <div class="music-top">
-    <div class="music-title" id="songName">🎵 BFN BGM</div>
-    <div class="music-status" id="songStatus">Paused</div>
+  <div class="maintenance-box">
+
+    <span class="maintenance-tag">🚧 EVENT STATUS</span>
+
+    <h1>Event Temporarily On Hold</h1>
+
+    <p>
+      The <b>Event</b> is currently on hold while
+      schedules, rules, and system checks are being finalized.<br><br>
+      Please stay tuned for official announcements and updates.
+    </p>
+
+    <div class="maintenance-note">
+      — LiloanUnited Team
+    </div>
+
   </div>
+</main>
 
-  <div class="music-controls">
-    <button class="m-btn" id="prevBtn" title="Previous" type="button">⏮️</button>
-    <button class="m-btn primary" id="playBtn" title="Play/Pause" type="button">▶️</button>
-    <button class="m-btn" id="nextBtn" title="Next" type="button">⏭️</button>
-    <button class="m-btn" id="shuffleBtn" title="Shuffle" type="button">🔀</button>
-    <button class="m-btn" id="minBtn" title="Minimize" type="button">➖</button>
-  </div>
-
-  <div class="music-row">
-    <span class="vol-label">🔊 Vol</span>
-    <input id="volRange" class="vol-range" type="range" min="0" max="100" value="50">
-  </div>
-
-  <div class="music-mini">
-    <span class="pill" id="modePill">Mode: Loop</span>
-    <span class="pill" id="trackPill">Track: 1/20</span>
-  </div>
-</div>
-
-<script>
-  /* POST DATE (AUTO TODAY) */
-  (function(){
-    const el = document.getElementById("postDate");
-    if(!el) return;
-    const d = new Date();
-    el.textContent = d.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    });
-  })();
-
-  /* THEME TOGGLE */
-  const toggle = document.getElementById("themeToggle");
-  const root = document.documentElement;
-
-  const savedTheme = localStorage.getItem("theme") || "light";
-  root.setAttribute("data-theme", savedTheme);
-  toggle.textContent = savedTheme === "light" ? "☀️" : "🌙";
-
-  toggle.addEventListener("click", () => {
-    const current = root.getAttribute("data-theme");
-    const newTheme = current === "light" ? "dark" : "light";
-    root.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    toggle.textContent = newTheme === "light" ? "☀️" : "🌙";
-  });
-
-  /* ✅ IMAGE MODAL */
-  const imgModal = document.getElementById("imgModal");
-  const imgModalPic = document.getElementById("imgModalPic");
-
-  function openImg(src){
-    imgModalPic.src = src;
-    imgModal.classList.add("show");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeImg(){
-    imgModal.classList.remove("show");
-    imgModalPic.src = "";
-    document.body.style.overflow = "";
-  }
-
-  // Close when clicking outside the image
-  imgModal.addEventListener("click", (e) => {
-    if(e.target === imgModal) closeImg();
-  });
-
-  // Close on ESC
-  window.addEventListener("keydown", (e) => {
-    if(e.key === "Escape" && imgModal.classList.contains("show")) closeImg();
-  });
-</script>
-
-<!-- ✅ MUSIC SCRIPT (ADDED - no conflicts with your existing script) -->
-<script>
-  /* =========================
-     🎵 BFN MUSIC SYSTEM (FULL + MINIMIZE)
-     - Volume slider
-     - Shuffle button
-     - Next/Prev
-     - Song name
-     - Remember last track + volume + shuffle + play state across pages
-     - Autoplay on first user interaction
-     - Minimize/Expand (PC + phone)
-  ========================= */
-  const bgm = document.getElementById("bgm");
-
-  const songName = document.getElementById("songName");
-  const songStatus = document.getElementById("songStatus");
-  const trackPill = document.getElementById("trackPill");
-  const modePill = document.getElementById("modePill");
-  const miniStatus = document.getElementById("miniStatus");
-
-  const prevBtn = document.getElementById("prevBtn");
-  const playBtn = document.getElementById("playBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const shuffleBtn = document.getElementById("shuffleBtn");
-  const volRange = document.getElementById("volRange");
-
-  const musicWidget = document.getElementById("musicWidget");
-  const minBtn = document.getElementById("minBtn");
-  const expandBtn = document.getElementById("expandBtn");
-
-  const playlist = [
-    { src: "sounds/bgm_0001.ogg", name: "bgm_0001.ogg" },
-    { src: "sounds/bgm_0002.ogg", name: "bgm_0002.ogg" },
-    { src: "sounds/bgm_0003.ogg", name: "bgm_0003.ogg" },
-    { src: "sounds/bgm_0004.ogg", name: "bgm_0004.ogg" },
-    { src: "sounds/bgm_0005.ogg", name: "bgm_0005.ogg" },
-    { src: "sounds/bgm_0006.ogg", name: "bgm_0006.ogg" },
-    { src: "sounds/bgm_0007.ogg", name: "bgm_0007.ogg" },
-    { src: "sounds/bgm_0008.ogg", name: "bgm_0008.ogg" },
-    { src: "sounds/bgm_0009.ogg", name: "bgm_0009.ogg" },
-    { src: "sounds/bgm_0010.ogg", name: "bgm_0010.ogg" },
-    { src: "sounds/bgm_0011.ogg", name: "bgm_0011.ogg" },
-    { src: "sounds/bgm_0012.ogg", name: "bgm_0012.ogg" },
-    { src: "sounds/bgm_0013.ogg", name: "bgm_0013.ogg" },
-    { src: "sounds/bgm_0014.ogg", name: "bgm_0014.ogg" },
-    { src: "sounds/bgm_0015.ogg", name: "bgm_0015.ogg" },
-    { src: "sounds/bgm_0016.ogg", name: "bgm_0016.ogg" },
-    { src: "sounds/bgm_0017.ogg", name: "bgm_0017.ogg" },
-    { src: "sounds/bgm_0018.ogg", name: "bgm_0018.ogg" },
-    { src: "sounds/bgm_0019.ogg", name: "bgm_0019.ogg" },
-    { src: "sounds/bgm_0020.ogg", name: "bgm_0020.ogg" }
-  ];
-
-  const LS = {
-    enabled: "bfn_music_enabled",
-    index: "bfn_music_index",
-    volume: "bfn_music_volume",
-    shuffle: "bfn_music_shuffle",
-    playing: "bfn_music_playing",
-    minimized: "bfn_music_minimized"
-  };
-
-  let musicEnabled = localStorage.getItem(LS.enabled) ?? "on";
-  let currentIndex = parseInt(localStorage.getItem(LS.index) ?? "0", 10);
-  if (Number.isNaN(currentIndex) || currentIndex < 0 || currentIndex >= playlist.length) currentIndex = 0;
-
-  let shuffleOn = (localStorage.getItem(LS.shuffle) ?? "0") === "1";
-  let wantPlaying = (localStorage.getItem(LS.playing) ?? "0") === "1";
-  let startedOnce = false;
-
-  // Volume restore
-  let savedVol = parseFloat(localStorage.getItem(LS.volume) ?? "0.5");
-  if (Number.isNaN(savedVol) || savedVol < 0 || savedVol > 1) savedVol = 0.5;
-  bgm.volume = savedVol;
-  volRange.value = String(Math.round(savedVol * 100));
-
-  function updateMiniBar(){
-    miniStatus.textContent = (bgm.paused ? "⏸️ " : "▶️ ") + playlist[currentIndex].name;
-  }
-
-  function setSongUI(){
-    songName.textContent = "🎵 " + playlist[currentIndex].name;
-    trackPill.textContent = `Track: ${currentIndex + 1}/${playlist.length}`;
-    modePill.textContent = shuffleOn ? "Mode: Shuffle" : "Mode: Loop";
-    shuffleBtn.style.opacity = shuffleOn ? "1" : ".65";
-    updateMiniBar();
-  }
-
-  function setStatusUI(){
-    const isPaused = bgm.paused;
-    songStatus.textContent = (musicEnabled === "off") ? "Off" : (isPaused ? "Paused" : "Playing");
-    playBtn.textContent = (musicEnabled === "off") ? "▶️" : (isPaused ? "▶️" : "⏸️");
-    playBtn.title = isPaused ? "Play" : "Pause";
-    updateMiniBar();
-  }
-
-  function loadTrack(index){
-    currentIndex = index;
-    localStorage.setItem(LS.index, String(currentIndex));
-    bgm.src = playlist[currentIndex].src;
-    bgm.load();
-    setSongUI();
-    setStatusUI();
-  }
-
-  function pickRandomIndex(exceptIndex){
-    if (playlist.length <= 1) return 0;
-    let idx = Math.floor(Math.random() * playlist.length);
-    if (idx === exceptIndex) idx = (idx + 1) % playlist.length;
-    return idx;
-  }
-
-  async function safePlay(){
-    if (musicEnabled === "off") return;
-    try{
-      await bgm.play();
-      startedOnce = true;
-      localStorage.setItem(LS.playing, "1");
-    }catch(e){
-      // blocked until user gesture
-    }
-    setStatusUI();
-  }
-
-  function pauseMusic(){
-    bgm.pause();
-    localStorage.setItem(LS.playing, "0");
-    setStatusUI();
-  }
-
-  function nextTrack(){
-    const nextIndex = shuffleOn ? pickRandomIndex(currentIndex)
-                               : (currentIndex + 1) % playlist.length;
-    loadTrack(nextIndex);
-    safePlay();
-  }
-
-  function prevTrack(){
-    const prevIndex = shuffleOn ? pickRandomIndex(currentIndex)
-                               : (currentIndex - 1 + playlist.length) % playlist.length;
-    loadTrack(prevIndex);
-    safePlay();
-  }
-
-  /* Minimize */
-  function setMinimized(min){
-    if (min){
-      musicWidget.classList.add("minimized");
-      localStorage.setItem(LS.minimized, "1");
-    }else{
-      musicWidget.classList.remove("minimized");
-      localStorage.setItem(LS.minimized, "0");
-    }
-  }
-
-  minBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setMinimized(true);
-  });
-
-  expandBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setMinimized(false);
-  });
-
-  // Track ended -> next
-  bgm.addEventListener("ended", nextTrack);
-
-  // Buttons
-  playBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (musicEnabled === "off"){
-      musicEnabled = "on";
-      localStorage.setItem(LS.enabled, "on");
-      await safePlay();
-      return;
-    }
-
-    if (bgm.paused) await safePlay();
-    else pauseMusic();
-  });
-
-  nextBtn.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); nextTrack(); });
-  prevBtn.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); prevTrack(); });
-
-  shuffleBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    shuffleOn = !shuffleOn;
-    localStorage.setItem(LS.shuffle, shuffleOn ? "1" : "0");
-    setSongUI();
-  });
-
-  volRange.addEventListener("input", () => {
-    const v = Number(volRange.value) / 100;
-    bgm.volume = v;
-    localStorage.setItem(LS.volume, String(v));
-    updateMiniBar();
-  });
-
-  // Autoplay on first interaction (browser rule)
-  function shouldTriggerBGM(target){
-    return target.closest("a, button, .btn, .poster, .logo, .nav, .sidebar, .music-widget");
-  }
-
-  async function firstUserStart(e){
-    if (!shouldTriggerBGM(e.target)) return;
-
-    if (!startedOnce && wantPlaying && musicEnabled !== "off"){
-      await safePlay();
-    }
-
-    document.removeEventListener("pointerdown", firstUserStart);
-    document.removeEventListener("click", firstUserStart);
-  }
-
-  document.addEventListener("pointerdown", firstUserStart, { passive:true });
-  document.addEventListener("click", firstUserStart);
-
-  // Save on unload
-  window.addEventListener("beforeunload", () => {
-    localStorage.setItem(LS.enabled, musicEnabled);
-    localStorage.setItem(LS.index, String(currentIndex));
-    localStorage.setItem(LS.shuffle, shuffleOn ? "1" : "0");
-    localStorage.setItem(LS.volume, String(bgm.volume));
-    localStorage.setItem(LS.playing, bgm.paused ? "0" : "1");
-    localStorage.setItem(LS.minimized, musicWidget.classList.contains("minimized") ? "1" : "0");
-  });
-
-  // Init
-  loadTrack(currentIndex);
-
-  const wasMin = (localStorage.getItem(LS.minimized) ?? "0") === "1";
-  if (wasMin) setMinimized(true);
-
-  if (musicEnabled === "off"){
-    pauseMusic();
-    songStatus.textContent = "Off";
-  } else {
-    setStatusUI();
-  }
-
-  /* Service Worker */
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js").catch(() => {});
-  }
-</script>
+<!-- ===============================
+     JS (FOR NAV / THEME)
+============================== -->
+<script src="assets/js/js1/ui.js"></script>
 
 </body>
 </html>
