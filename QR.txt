@@ -1,8 +1,0 @@
-make me a website html css that have this
-
-card view
-file name
-download button lock open to pop up gcash qr
-show prize of files
-received a cash and unlock the files button
-and direct auto download
