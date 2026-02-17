@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Downloads</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <main class="page">
+    <h1 class="page-title">Downloads</h1>
+    <p class="muted">Authorized users only.</p>
+
+    <!-- CARD -->
+    <article class="card dl" id="dlCard">
+      <!-- file path stored here -->
+      <div class="card-inner" data-file="CF-PH.rar">
+
+        <div class="dl-top">
+          <span class="chip">Resources</span>
+          <span class="chip chip-live">Updated</span>
+        </div>
+
+        <h3>CF-PH LU 2026</h3>
+        <p class="muted">Private download (authorized users only).</p>
+
+        <div class="dl-meta">
+          <span class="chip">RAR</span>
+          <span class="chip">~1.2MB</span>
+        </div>
+
+        <div class="dl-actions">
+          <!-- JS will handle download after password -->
+          <button class="btn btn-primary" id="btnDownload" type="button">⬇ Download</button>
+
+          <!-- Read update goes to blog.html -->
+          <a class="btn btn-ghost" href="../../blog.html">Read Update</a>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modalTitle">Preparing your download…</div>
+          <div class="muted" id="modalSub">Please wait while we load.</div>
+        </div>
+        <button class="x" id="btnClose" type="button" aria-label="Close">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="muted">Progress</div>
+          <div class="muted"><span id="pctText">0</span>%</div>
+        </div>
+
+        <div class="bar" aria-label="Progress bar">
+          <div id="barFill"></div>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <div class="muted" id="statusText">Starting…</div>
+          <button class="btn btn-primary" id="btnProceed" type="button" disabled>
+            Proceed to Download 
+          </button>
+        </div>
+
+        <!-- Password area -->
+        <div class="password-wrap" id="passwordWrap">
+          <div class="muted">Enter password to download:</div>
+          <div class="field">
+            <input id="pwInput" type="password" placeholder="Password" autocomplete="off" />
+            <button class="btn btn-primary" id="btnConfirm" type="button">Confirm</button>
+          </div>
+
+          <div class="error" id="pwError">Incorrect password. Try again.</div>
+          <div class="hint">Tip: For real protection, validate password.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
