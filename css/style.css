@@ -319,6 +319,19 @@ h3{
   line-height: 1.6;
 }
 
+.card.dl{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card.dl .dl-actions{
+  margin-top: auto;   /* pushes download section to bottom */
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .text-accent{ color: var(--accent); text-shadow: var(--glow); }
 
 .section{ margin-top: 26px; }
@@ -697,6 +710,20 @@ h3{
   margin-bottom: 10px;
 }
 .dl-meta{ display:flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+.card.dl{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card.dl .dl-actions{
+  margin-top: auto;   /* pushes download section to bottom */
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .dl-actions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
 
 /* Contact */
