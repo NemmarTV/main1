@@ -241,36 +241,43 @@ html[data-theme="light"] .site-header{
 
 /* Mobile menu behavior */
 @media (max-width: 860px){
-  .nav-toggle{ display:flex; }
+
+  .nav-toggle{
+    display: flex;
+  }
+
   .nav-links{
     position: absolute;
     left: 18px;
     right: 18px;
     top: calc(var(--navH) + 10px);
-    background: rgba(0,0,0,.55);
+    background: rgba(0, 0, 0, 0.9); /* stronger color */
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 10px;
+    padding: 12px;
     display: grid;
-    gap: 8px;
-    transform: translateY(-8px);
+    gap: 10px;
+    transform: translateY(-10px);
     opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--trans), transform var(--trans);
+    visibility: hidden;
+    transition: 0.3s ease;
     box-shadow: var(--shadow);
     backdrop-filter: blur(12px);
+    z-index: 999; /* important */
   }
-  html[data-theme="light"] .nav-links{ background: rgba(255,255,255,.75); }
+
   .nav-links.open{
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto;
+    visibility: visible;
   }
+
   .nav-links a{
     border-radius: 14px;
     padding: 12px 14px;
-    background: rgba(255,255,255,.03);
+    background: rgba(255,255,255,.1);
   }
+
 }
 
 /* Marquee */

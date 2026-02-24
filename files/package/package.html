@@ -1,96 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Downloads</title>
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Downloads</title>
+<link rel="stylesheet" href="css/style.css" />
+
+<style>
+  /* ===== HARDCORE GAMING SERVER LOCK ===== */
+  #serverLock {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1a0000 0%, #000 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 20000;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+  }
+
+  .server-box {
+    background: rgba(20,20,20,0.95);
+    padding: 50px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 40px rgba(255,0,0,0.7);
+    animation: pulseGlow 2s infinite alternate;
+  }
+
+  .server-box h1 {
+    color: #ff2b2b;
+    font-size: 38px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px red;
+    animation: glitch 1s infinite;
+  }
+
+  .server-box h2 {
+    color: #00ffcc;
+    margin-bottom: 20px;
+    font-weight: normal;
+  }
+
+  .server-box p {
+    line-height: 1.6;
+    color: #ddd;
+  }
+
+  .server-box button {
+    margin-top: 25px;
+    padding: 14px 35px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #ff0000, #990000);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 0 15px red;
+  }
+
+  .server-box button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px red;
+  }
+
+  .server-box input[type="password"] {
+    padding: 10px;
+    width: 70%;
+    border-radius: 5px;
+    border: 1px solid #555;
+    margin-top: 10px;
+    background: #111;
+    color: #fff;
+  }
+
+  .server-box .countdown {
+    margin-top: 10px;
+    color: #ff5555;
+    font-weight: bold;
+  }
+
+  .server-box .status {
+    margin-top: 15px;
+    color: #ffcc00;
+    font-family: monospace;
+  }
+
+  @keyframes pulseGlow {
+    from { box-shadow: 0 0 20px rgba(255,0,0,0.4); }
+    to { box-shadow: 0 0 60px rgba(255,0,0,0.9); }
+  }
+
+  @keyframes glitch {
+    0% { text-shadow: 2px 0 red; }
+    20% { text-shadow: -2px 0 #00ffcc; }
+    40% { text-shadow: 2px 2px red; }
+    60% { text-shadow: -2px -2px #00ffcc; }
+    80% { text-shadow: 2px -2px red; }
+    100% { text-shadow: -2px 2px #00ffcc; }
+  }
+</style>
 </head>
 <body>
 
-  <main class="page">
-    <h1 class="page-title">Downloads</h1>
-    <p class="muted">Authorized users only.</p>
-
-    <!-- CARD -->
-    <article class="card dl" id="dlCard">
-      <!-- file path stored here -->
-      <div class="card-inner" data-file="CF-PH.rar">
-
-        <div class="dl-top">
-          <span class="chip">Resources</span>
-          <span class="chip chip-live">Updated</span>
-        </div>
-
-        <h3>CF-PH LU 2026</h3>
-        <p class="muted">Private download (authorized users only).</p>
-
-        <div class="dl-meta">
-          <span class="chip">RAR</span>
-          <span class="chip">~1.2MB</span>
-        </div>
-
-        <div class="dl-actions">
-          <!-- JS will handle download after password -->
-          <button class="btn btn-primary" id="btnDownload" type="button">⬇ Download</button>
-
-          <!-- Read update goes to blog.html -->
-          <a class="btn btn-ghost" href="../../blog.html">Read Update</a>
-        </div>
-
-      </div>
-    </article>
-
-    <p class="muted">if you dont know how to use this your account will be banned even you dont use Deep Freeze Good Luck 😉☠️.
-      <br>you will get a crispy.
+<!-- 🎮 HARDCORE SERVER LOCK SCREEN -->
+<div id="serverLock">
+  <div class="server-box">
+    <h1>⚠ SERVER PROTECTED</h1>
+    <h2>Authorized Players Only</h2>
+    <p>
+      This download system is restricted to advanced and authorized users only.
       <br><br>
-      <b>So Dont try to use this only Personal users know how to use this any advice contact the owner of this website.</b>
+      Any misuse, exploit attempt, or bypass of protection systems
+      (including Deep Freeze or similar software) will result in
+      <strong>permanent account ban</strong>.
+      <br><br>
+      No warnings. No second chances.
+      <br><br>
+      Enter the password below to begin.
     </p>
-  </main>
 
-  <!-- MODAL -->
-  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-header">
-        <div>
-          <div class="modal-title" id="modalTitle">Preparing your download…</div>
-          <div class="muted" id="modalSub">Please wait while we load.</div>
-        </div>
-        <button class="x" id="btnClose" type="button" aria-label="Close">×</button>
+    <input type="password" id="serverPassword" placeholder="Enter password" />
+    <div class="countdown" id="countdown">Wait 10s to activate button...</div>
+    <button id="enterBtn" disabled>ENTER SERVER</button>
+    <div class="status" id="scanStatus">Anti-Cheat Scanning…</div>
+  </div>
+</div>
+
+<!-- ===== ORIGINAL PACKAGE.HTML CONTENT ===== -->
+<main class="page">
+  <h1 class="page-title">Downloads</h1>
+  <p class="muted">Authorized users only.</p>
+
+  <!-- CARD -->
+  <article class="card dl" id="dlCard">
+    <div class="card-inner" data-file="CF-PH.rar">
+      <div class="dl-top">
+        <span class="chip">Resources</span>
+        <span class="chip chip-live">Updated</span>
       </div>
 
-      <div class="modal-body">
-        <div class="row">
-          <div class="muted">Progress</div>
-          <div class="muted"><span id="pctText">0</span>%</div>
+      <h3>CF-PH LU 2026</h3>
+      <p class="muted">Private download (authorized users only).</p>
+
+      <div class="dl-meta">
+        <span class="chip">RAR</span>
+        <span class="chip">~1.2MB</span>
+      </div>
+
+      <div class="dl-actions">
+        <button class="btn btn-primary" id="btnDownload" type="button">⬇ Download</button>
+        <a class="btn btn-ghost" href="../../blog.html">Read Update</a>
+      </div>
+    </div>
+  </article>
+
+  <p class="muted">
+    <strong>💀 SYSTEM ALERT:</strong><br><br>
+    Only elite users may enter. Misuse will trigger permanent ban.  
+    Any attempt to bypass security (Deep Freeze included) will be logged.  
+    <br><br>
+    Proceed at your own risk. Contact the owner if you dare.
+  </p>
+
+</main>
+
+<!-- MODAL (UNCHANGED) -->
+<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">Preparing your download…</div>
+        <div class="muted" id="modalSub">Please wait while we load.</div>
+      </div>
+      <button class="x" id="btnClose" type="button" aria-label="Close">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="muted">Progress</div>
+        <div class="muted"><span id="pctText">0</span>%</div>
+      </div>
+
+      <div class="bar" aria-label="Progress bar">
+        <div id="barFill"></div>
+      </div>
+
+      <div class="row" style="margin-top:10px;">
+        <div class="muted" id="statusText">Starting…</div>
+        <button class="btn btn-primary" id="btnProceed" type="button" disabled>
+          Proceed to Download 
+        </button>
+      </div>
+
+      <div class="password-wrap" id="passwordWrap">
+        <div class="muted">Enter password to download:</div>
+
+        <div class="field">
+          <input id="pwInput" type="password" placeholder="Password" autocomplete="off" />
+          <button type="button" id="togglePassword" class="toggle-btn">👁</button>
+          <button class="btn btn-primary" id="btnConfirm" type="button">Confirm</button>
         </div>
 
-        <div class="bar" aria-label="Progress bar">
-          <div id="barFill"></div>
-        </div>
-
-        <div class="row" style="margin-top:10px;">
-          <div class="muted" id="statusText">Starting…</div>
-          <button class="btn btn-primary" id="btnProceed" type="button" disabled>
-            Proceed to Download 
-          </button>
-        </div>
-
-        <!-- Password area -->
-        <div class="password-wrap" id="passwordWrap">
-          <div class="muted">Enter password to download:</div>
-          <div class="field">
-            <input id="pwInput" type="password" placeholder="Password" autocomplete="off" />
-            <button class="btn btn-primary" id="btnConfirm" type="button">Confirm</button>
-          </div>
-
-          <div class="error" id="pwError">Incorrect password. Try again.</div>
-          <div class="hint">Tip: For real protection, validate password.</div>
-        </div>
+        <div class="error" id="pwError">Incorrect password. Try again.</div>
+        <div class="hint">Tip: For real protection, validate password.</div>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="js/main.js"></script>
+<script src="js/main.js"></script>
+<script src="js/f12.js"></script>
+
 </body>
 </html>

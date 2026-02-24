@@ -141,3 +141,26 @@
     if (e.key === "Enter") btnConfirm.click();
   });
 })();
+
+
+
+// Show password
+// Show password
+// Show password
+// Show password
+// Show password
+// Show password
+// Show password
+
+    const pwInput = document.getElementById("pwInput");
+    const togglePassword = document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", function () {
+      if (pwInput.type === "password") {
+        pwInput.type = "text";
+        this.textContent = "🙈"; // change icon when visible
+      } else {
+        pwInput.type = "password";
+        this.textContent = "👁";
+      }
+    });

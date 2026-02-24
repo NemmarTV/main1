@@ -247,3 +247,41 @@ button:disabled{
   .field{ flex-direction:column; }
   .x{ width:40px; height:40px; }
 }
+
+
+
+/* SHOW PASSWORD */
+/* SHOW PASSWORD */
+/* SHOW PASSWORD */
+/* SHOW PASSWORD */
+/* SHOW PASSWORD */
+
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#pwInput {
+  padding-right: 40px;
+}
+
+.toggle-btn {
+  position: absolute;
+  right: 95px; /* adjust depending on confirm button width */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.toggle-btn {
+  color: #ffffff;   /* make it visible */
+}
+
+.toggle-btn:hover {
+  opacity: 1;
+}
