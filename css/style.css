@@ -395,15 +395,15 @@ h3{
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: rgba(255,255,255,.04);
+  background: rgba(222, 248, 175, 0.04);
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
 }
 .chip-live{
   color: var(--text);
-  border-color: rgba(255,45,45,.35);
-  background: rgba(255,45,45,.12);
+  border-color: rgb(0, 255, 42);
+  background: rgba(45, 255, 73, 0.12);
   box-shadow: var(--glow);
 }
 
