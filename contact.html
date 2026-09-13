@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#2c2c54" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Support — Prime Blog</title>
+  <link rel="icon" href="images/pt-logo.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/intro.css" />
+  <link rel="stylesheet" href="css/player.css" />
+</head>
+<body>
+  <div class="pb-bg" aria-hidden="true"></div>
+  <div class="pb-noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        <div class="logo"><img src="images/logo-prime.png" alt="Prime Blog" onerror="this.src='images/pt-logo.png'" /></div>
+        <div class="brand-text"><span class="brand-name">PRIME BLOG</span><span class="brand-tag">Esports • Community • Competitive</span></div>
+      </a>
+      <div class="nav-right">
+        <span class="version-badge">v21.3</span>
+        <div class="nav-links" data-navlinks>
+          <a href="index.html" data-nav="home">Home</a>
+          <a href="about.html" data-nav="about">About</a>
+          <a href="blog.html" data-nav="blog">News</a>
+          <a href="event.html" data-nav="events">Events</a>
+     <a href="games.html" data-nav="games">Games</a>
+          <a href="reels.html" data-nav="reels">Highlights</a>
+          <a href="download.html" data-nav="downloads">Downloads</a>
+          <a href="donate.html" data-nav="donate">Donate</a>
+          <a href="contact.html" data-nav="contact">Support</a>
+        </div>
+        <a href="https://discord.gg/FweAccztUr" class="btn-discord" target="_blank" rel="noopener">Discord</a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="marquee"><div class="marquee-track">
+    <span>🔥 Prime Blog Support · Fill the form · We reply on Discord 🔥</span>
+    <span>🔥 Prime Blog Support · Fill the form · We reply on Discord 🔥</span>
+    <span>🔥 Prime Blog Support · Fill the form · We reply on Discord 🔥</span>
+  </div></div>
+
+  <main>
+    <div class="container page-head">
+      <div class="section-label">Support</div>
+      <h1>Contact &amp; Support</h1>
+      <p class="lead">Fill out the form below — it posts to our Discord so staff can reply. You can also DM <strong>nemmartvy</strong>.</p>
+
+
+    </div>
+
+    <section class="section" style="padding-top:10px;">
+      <div class="container" style="max-width:720px;">
+        <div class="card glow reveal">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+            <img src="images/logo-prime.png" alt="" width="56" height="56" style="border-radius:12px;" onerror="this.src='images/pt-logo.png'" />
+            <div>
+              <h2 style="font-family:var(--font-head);margin:0 0 4px;font-size:1.15rem;">Send a message</h2>
+              <p style="color:var(--text-muted);font-size:0.85rem;margin:0;">Tryouts, support, partnerships — goes to Discord</p>
+            </div>
+          </div>
+
+          <form class="form" id="supportForm" novalidate>
+            <div class="form-row">
+              <label>
+                <span>Name *</span>
+                <input type="text" id="supName" required maxlength="60" placeholder="Your name" />
+              </label>
+              <label>
+                <span>Discord username *</span>
+                <input type="text" id="supDiscord" required maxlength="40" placeholder="e.g. player123" />
+              </label>
+            </div>
+            <div class="form-row">
+              <label>
+                <span>Topic *</span>
+                <select id="supTopic" required>
+                  <option value="">Select</option>
+                  <option value="Tryouts">Tryouts</option>
+                  <option value="General Inquiry">General Inquiry</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Event Question">Event Question</option>
+                  <option value="Support">Support</option>
+                  <option value="Other">Other</option>
+                </select>
+              </label>
+              <label>
+                <span>IGN (optional)</span>
+                <input type="text" id="supIgn" maxlength="40" placeholder="In-game name" />
+              </label>
+            </div>
+            <label>
+              <span>Message *</span>
+              <textarea id="supMessage" rows="5" required placeholder="How can we help?"></textarea>
+            </label>
+            <input type="text" name="website" class="pb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="btnSupport">Send to Discord</button>
+              <button type="reset" class="btn btn-ghost">Reset</button>
+            </div>
+            <p id="supStatus" style="margin-top:12px;font-size:13px;min-height:1.3em;color:var(--text-muted);"></p>
+          </form>
+
+          <div id="supDone" style="display:none;margin-top:18px;padding-top:18px;border-top:1px solid var(--border);text-align:center;">
+            <div class="chip-row" style="justify-content:center;"><span class="chip chip-live">Sent</span></div>
+            <h3 style="font-family:var(--font-head);margin:12px 0 8px;">Message sent</h3>
+            <p style="color:var(--text-secondary);font-size:0.92rem;line-height:1.65;">
+              Staff will see it on Discord. Wait for a reply or DM <strong>nemmartvy</strong> /
+              <strong>Mamiplays</strong> / <strong>BlairePH</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid cards-2" style="margin-top:20px;">
+          <div class="card hover-rise reveal">
+            <h3 style="margin-bottom:8px;">Discord server</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:12px;">Join the community channel.</p>
+            <a href="https://discord.gg/WEYFeBWgB6" class="btn btn-sm btn-primary" target="_blank" rel="noopener">Join Discord</a>
+          </div>
+          <div class="card hover-rise reveal reveal-delay-1">
+            <h3 style="margin-bottom:8px;">Owner</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:12px;">[Code.Dev] Nems · Discord: <strong>nemmartvy</strong></p>
+            <a href="about.html#owner" class="btn btn-sm btn-ghost">Owner page</a>
+          </div>
+        </div>
+
+        <!-- Subscribe -->
+        <div class="card glow reveal" style="margin-top:28px;max-width:420px;margin-left:auto;margin-right:auto;padding:28px 24px;text-align:center;background:linear-gradient(160deg,rgba(15,20,40,0.95),rgba(10,14,28,0.98));border:1px solid rgba(255,255,255,0.08);">
+          <h2 style="font-family:var(--font-head);font-size:1.25rem;margin:0 0 8px;color:#fff;">Subscribe to receive future updates</h2>
+          <div style="height:1px;background:rgba(255,255,255,0.12);margin:16px auto 20px;max-width:80%;"></div>
+          <form id="subscribeForm" novalidate style="display:flex;flex-direction:column;gap:12px;position:relative;">
+            <input type="text" id="subHp" name="company" class="pb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <input type="text" id="subName" required maxlength="60" placeholder="Enter your name"
+              style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#fff;font-size:0.95rem;outline:none;" />
+            <input type="email" id="subEmail" required maxlength="120" placeholder="Enter your email"
+              style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#fff;font-size:0.95rem;outline:none;" />
+            <button type="submit" id="btnSubscribe" class="btn btn-primary"
+              style="width:100%;padding:12px;border-radius:10px;background:#3B82F6;border:none;font-weight:700;font-size:1rem;cursor:pointer;">
+              Subscribe
+            </button>
+          </form>
+          <p id="subStatus" style="margin-top:12px;font-size:13px;min-height:1.2em;color:var(--text-muted);"></p>
+          <p style="margin-top:10px;font-size:0.8rem;color:var(--text-muted);line-height:1.5;">No spam guaranteed, So please don't send any spam mail.</p>
+          <div id="subDone" style="display:none;margin-top:14px;">
+            <span class="chip chip-live">Subscribed</span>
+            <p style="margin-top:8px;color:var(--text-secondary);font-size:0.9rem;">Thanks! You're on the list for future updates.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <img class="footer-logo" src="images/logo-prime.png" alt="" onerror="this.src='images/pt-logo.png'" />
+        <div class="footer-title">PRIME BLOG</div>
+        <p class="footer-desc">Elite esports community hub. Owner: [Code.Dev] Nems</p>
+      </div>
+      <div class="footer-col"><h4>Platform</h4><a href="index.html">Home</a>
+     <a href="games.html">Games</a><a href="blog.html">News</a><a href="download.html">Downloads</a></div>
+      <div class="footer-col"><h4>Community</h4><a href="about.html">About</a><a href="donate.html">Donate</a><a href="contact.html">Support</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Prime Blog · Owner [Code.Dev] Nems</div>
+    </div>
+  </div></footer>
+
+  <script src="js/maintenance.js"></script>
+  <script src="js/intro.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/anti-spam.js"></script>
+  <script src="js/discord-config.js"></script>
+  <script src="js/discord-send.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("supportForm");
+      if (!form) return;
+      var status = document.getElementById("supStatus");
+      var done = document.getElementById("supDone");
+      var btn = document.getElementById("btnSupport");
+      var pageStart = Date.now();
+
+      function v(id) {
+        var el = document.getElementById(id);
+        return el ? el.value.trim() : "";
+      }
+      function setStatus(msg, kind) {
+        status.textContent = msg || "";
+        status.style.color =
+          kind === "ok" ? "#22C55E" :
+          kind === "err" ? "#FF2D55" :
+          kind === "wait" ? "#00E5FF" :
+          "var(--text-muted)";
+      }
+      function lockForm(msg) {
+        btn.disabled = true;
+        btn.textContent = "Unavailable";
+        form.querySelectorAll("input, select, textarea, button[type=reset]").forEach(function (el) {
+          el.disabled = true;
+        });
+        setStatus(msg, "err");
+      }
+
+      var AS = window.PB_ANTISPAM;
+      var guard = AS && AS.createGuard({
+        prefix: "pb_support",
+        cooldownMs: 60 * 1000,
+        once: true,
+        minFillMs: 1500,
+        maxAttempts: 3,
+        attemptWindowMs: 15 * 60 * 1000,
+        form: form,
+        startedAt: pageStart,
+        onSpam: function () {
+          AS.showSpamWall(document.body);
+          lockForm("Spam blocked. Don't try to Spam bitch.");
+        }
+      });
+
+      function applyState() {
+        if (!guard) return false;
+        if (guard.isBanned()) {
+          AS.showSpamWall(document.body);
+          lockForm("Spam blocked. Don't try to Spam bitch.");
+          return true;
+        }
+        if (guard.hasUsedOnce()) {
+          lockForm("You can only send 1 message. Contact already used.");
+          done.style.display = "block";
+          return true;
+        }
+        var left = guard.remainingCooldown();
+        if (left > 0) {
+          btn.disabled = true;
+          btn.textContent = "Wait " + guard.formatMs(left);
+          setStatus("Please wait " + guard.formatMs(left) + ". Timer continues if you refresh.", "wait");
+          return true;
+        }
+        return false;
+      }
+
+      var ticker = null;
+      function startTicker() {
+        if (ticker) clearInterval(ticker);
+        ticker = setInterval(function () {
+          if (!guard) return;
+          if (guard.isBanned() || guard.hasUsedOnce()) {
+            clearInterval(ticker);
+            applyState();
+            return;
+          }
+          var left = guard.remainingCooldown();
+          if (left <= 0) {
+            clearInterval(ticker);
+            btn.disabled = false;
+            btn.textContent = "Send to Discord";
+            setStatus("");
+            return;
+          }
+          btn.disabled = true;
+          btn.textContent = "Wait " + guard.formatMs(left);
+          setStatus("Please wait " + guard.formatMs(left) + ". Timer continues if you refresh.", "wait");
+        }, 500);
+      }
+
+      if (applyState()) startTicker();
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!guard) return;
+
+        if (guard.isBanned()) {
+          AS.showSpamWall(document.body);
+          lockForm("Spam blocked. Don't try to Spam bitch.");
+          return;
+        }
+        if (guard.hasUsedOnce()) {
+          lockForm("You can only send 1 message. Contact already used.");
+          return;
+        }
+        var left = guard.remainingCooldown();
+        if (left > 0) {
+          setStatus("Please wait " + guard.formatMs(left) + ".", "wait");
+          startTicker();
+          return;
+        }
+
+        if (!guard.recordAttempt()) return;
+        if (!guard.checkHoneypot()) return;
+        if (guard.isTooFast && guard.isTooFast()) {
+          setStatus("Please wait a moment, then try again (anti-bot).", "wait");
+          return;
+        }
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        var name = v("supName");
+        var discord = v("supDiscord");
+        var topic = v("supTopic");
+        var ign = v("supIgn");
+        var message = v("supMessage");
+
+        if (AS.textLooksSpam(name, discord, topic, ign, message)) {
+          guard.ban("content");
+          return;
+        }
+
+        var c = window.PB_DISCORD || {};
+        var webhook = (c.supportWebhook || "").trim();
+        if (!webhook) {
+          setStatus("Support webhook not configured.", "err");
+          return;
+        }
+
+        var payload = {
+          username: c.supportUsername || "Prime Blog Support",
+          content: "📩 New support message — please review",
+          embeds: [{
+            title: "Support / Contact Form",
+            description: "From **Prime Blog** · contact.html",
+            color: 0x40407a,
+            fields: [
+              { name: "Name", value: name || "—", inline: true },
+              { name: "Discord", value: "```" + discord + "```", inline: true },
+              { name: "Topic", value: topic || "—", inline: true },
+              { name: "IGN", value: ign || "—", inline: true },
+              { name: "Message", value: message || "—", inline: false }
+            ],
+            footer: { text: "Prime Blog Support · " + new Date().toLocaleString() },
+            timestamp: new Date().toISOString()
+          }]
+        };
+
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+        setStatus("Sending to Discord…", "wait");
+
+        // Plain JSON POST is most reliable for support/subscribe
+        var req = fetch(webhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        req
+          .then(function (res) {
+            if (res.status === 204 || res.status === 200 || res.ok) return res;
+            return res.text().then(function (txt) {
+              throw new Error("Discord " + res.status + (txt ? ": " + String(txt).slice(0, 120) : ""));
+            });
+          })
+          .then(function () {
+            guard.markSuccess();
+            setStatus("");
+            done.style.display = "block";
+            form.reset();
+            lockForm("You can only send 1 message. Contact already used.");
+            done.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          })
+          .catch(function (err) {
+            setStatus("Failed: " + (err.message || "network error"), "err");
+            btn.disabled = false;
+            btn.textContent = "Send to Discord";
+          });
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var form = document.getElementById("subscribeForm");
+      if (!form) return;
+      var status = document.getElementById("subStatus");
+      var done = document.getElementById("subDone");
+      var btn = document.getElementById("btnSubscribe");
+      var pageStart = Date.now();
+
+      function setStatus(msg, kind) {
+        status.textContent = msg || "";
+        status.style.color =
+          kind === "ok" ? "#22C55E" :
+          kind === "err" ? "#FF2D55" :
+          kind === "wait" ? "#00E5FF" :
+          "var(--text-muted)";
+      }
+      function lockForm(msg) {
+        btn.disabled = true;
+        btn.textContent = "Unavailable";
+        form.querySelectorAll("input, button").forEach(function (el) {
+          el.disabled = true;
+        });
+        setStatus(msg, "err");
+      }
+
+      var AS = window.PB_ANTISPAM;
+      var guard = AS && AS.createGuard({
+        prefix: "pb_subscribe",
+        cooldownMs: 60 * 1000,
+        once: true,
+        minFillMs: 1500,
+        maxAttempts: 3,
+        attemptWindowMs: 15 * 60 * 1000,
+        form: form,
+        startedAt: pageStart,
+        honeypotSelector: ".pb-hp",
+        onSpam: function () {
+          AS.showSpamWall(document.body);
+          lockForm("Spam blocked. Don't try to Spam bitch.");
+        }
+      });
+
+      function applyState() {
+        if (!guard) return false;
+        if (guard.isBanned()) {
+          AS.showSpamWall(document.body);
+          lockForm("Spam blocked. Don't try to Spam bitch.");
+          return true;
+        }
+        if (guard.hasUsedOnce()) {
+          lockForm("You can only subscribe 1 time. Already subscribed.");
+          done.style.display = "block";
+          return true;
+        }
+        var left = guard.remainingCooldown();
+        if (left > 0) {
+          btn.disabled = true;
+          btn.textContent = "Wait " + guard.formatMs(left);
+          setStatus("Please wait " + guard.formatMs(left) + ". Timer continues if you refresh.", "wait");
+          return true;
+        }
+        return false;
+      }
+
+      var ticker = null;
+      function startTicker() {
+        if (ticker) clearInterval(ticker);
+        ticker = setInterval(function () {
+          if (!guard) return;
+          if (guard.isBanned() || guard.hasUsedOnce()) {
+            clearInterval(ticker);
+            applyState();
+            return;
+          }
+          var left = guard.remainingCooldown();
+          if (left <= 0) {
+            clearInterval(ticker);
+            btn.disabled = false;
+            btn.textContent = "Subscribe";
+            setStatus("");
+            return;
+          }
+          btn.disabled = true;
+          btn.textContent = "Wait " + guard.formatMs(left);
+          setStatus("Please wait " + guard.formatMs(left) + ". Timer continues if you refresh.", "wait");
+        }, 500);
+      }
+
+      if (applyState()) startTicker();
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!guard) return;
+
+        if (guard.isBanned()) {
+          AS.showSpamWall(document.body);
+          lockForm("Spam blocked. Don't try to Spam bitch.");
+          return;
+        }
+        if (guard.hasUsedOnce()) {
+          lockForm("You can only subscribe 1 time. Already subscribed.");
+          return;
+        }
+        var left = guard.remainingCooldown();
+        if (left > 0) {
+          setStatus("Please wait " + guard.formatMs(left) + ".", "wait");
+          startTicker();
+          return;
+        }
+
+        if (!guard.recordAttempt()) return;
+        if (!guard.checkHoneypot()) return;
+        if (guard.isTooFast && guard.isTooFast()) {
+          setStatus("Please wait a moment, then try again (anti-bot).", "wait");
+          return;
+        }
+
+        var name = (document.getElementById("subName").value || "").trim();
+        var email = (document.getElementById("subEmail").value || "").trim();
+        if (!name || !email) {
+          setStatus("Please enter name and email.", "err");
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          setStatus("Please enter a valid email.", "err");
+          return;
+        }
+
+        if (AS.textLooksSpam(name, email)) {
+          guard.ban("content");
+          return;
+        }
+
+        var c = window.PB_DISCORD || {};
+        var webhook = (c.subscribeWebhook || "").trim();
+        if (!webhook) {
+          setStatus("Subscribe webhook not configured.", "err");
+          return;
+        }
+
+        var payload = {
+          username: c.subscribeUsername || "Prime Blog Subscribe",
+          content: "🔔 New subscriber",
+          embeds: [{
+            title: "Newsletter Subscribe",
+            description: "From **Prime Blog** · contact.html",
+            color: 0x40407a,
+            fields: [
+              { name: "Name", value: name, inline: true },
+              { name: "Email", value: "```" + email + "```", inline: true }
+            ],
+            footer: { text: "Prime Blog Subscribe · " + new Date().toLocaleString() },
+            timestamp: new Date().toISOString()
+          }]
+        };
+
+        btn.disabled = true;
+        btn.textContent = "Subscribing…";
+        setStatus("Sending…", "wait");
+
+        // Plain JSON POST is most reliable for support/subscribe
+        var req = fetch(webhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        req
+          .then(function (res) {
+            if (res.status === 204 || res.status === 200 || res.ok) return res;
+            return res.text().then(function (txt) {
+              throw new Error("Discord " + res.status + (txt ? ": " + String(txt).slice(0, 120) : ""));
+            });
+          })
+          .then(function () {
+            guard.markSuccess();
+            setStatus("");
+            done.style.display = "block";
+            form.reset();
+            lockForm("You can only subscribe 1 time. Already subscribed.");
+          })
+          .catch(function (err) {
+            setStatus("Failed: " + (err.message || "network error"), "err");
+            btn.disabled = false;
+            btn.textContent = "Subscribe";
+          });
+      });
+    })();
+  </script>
+
+<script src="js/update-checker.js"></script>
+</body>
+</html>
