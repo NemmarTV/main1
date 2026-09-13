@@ -15,6 +15,12 @@
 
   var PLAYLIST = [
     {
+      id: "bgmusic",
+      title: "bgmusic",
+      artist: "Prime Blog · bgmusic",
+      src: "sounds/bgmusic.mp3",
+    },
+    {
       id: "landing_loop",
       title: "Landing Loop",
       artist: "Prime Blog · BGM",
