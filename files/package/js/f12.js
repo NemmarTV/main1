@@ -2,12 +2,12 @@
    Prime Blog — Server Lock Protection v20.5.1
    Anti-cheat gate + F12 / dev tools blocker
    - 8 second countdown before enter
-   - Password protection (default: "2000")
+   - Password protection (default: "1111")
    - Disables right-click, F12, DevTools hotkeys
 ================================================ */
 
 (() => {
-  const LOCK_PASSWORD = "2000"; // Change to your desired password
+  const LOCK_PASSWORD = "1111"; // Change to your desired password
 
   const serverLock = document.getElementById("serverLock");
   const mainContent = document.getElementById("mainContent");

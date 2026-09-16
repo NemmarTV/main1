@@ -374,3 +374,9 @@ body.has-pb-player {
     gap: 10px;
   }
 }
+
+/* Nexivo player accents */
+.pb-player, .music-player, [class*="player"] {
+  border-radius: 16px !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}

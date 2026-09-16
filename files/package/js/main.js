@@ -7,7 +7,7 @@
 ================================================ */
 
 (() => {
-  const PASSWORD = "2026";
+  const PASSWORD = "1111";
 
   // DOM elements
   const btnDownload = document.getElementById("btnDownload");

@@ -1,0 +1,1 @@
+Place bgmusic.mp3 in this folder (sounds/bgmusic.mp3)

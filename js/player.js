@@ -16,8 +16,8 @@
   var PLAYLIST = [
     {
       id: "bgmusic",
-      title: "bgmusic",
-      artist: "Prime Blog · bgmusic",
+      title: "BG Music",
+      artist: "Prime Blog · BGM",
       src: "sounds/bgmusic.mp3",
     },
     {
